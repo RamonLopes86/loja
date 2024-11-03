@@ -56,6 +56,14 @@
         display: block;
 }
 
+.navMenu > .ulMenu > .titDep:hover > .subDep > li {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 
 .navMenu > .ulMenu > li > .subDep {
 
@@ -183,7 +191,7 @@
 
 }
 
-.navMenu > .ulMenu > .titDep .boxSubmatEle , .boxSubFerramentas  > ul {
+.navMenu > .ulMenu > .titDep .boxSubmatEle  > ul {
 
     display: grid;
     grid-template-columns: repeat(2 , 1fr);
@@ -224,7 +232,7 @@
     /* display: flex;
     flex-direction: column;
     gap: 10px; */
-    width: 500px;
+    width: 0px;
     left: 240px;
     top: 60px;
     height: 299px;
@@ -239,6 +247,136 @@
          padding-top: 20px;
          padding-left: 10px;
     }
+}
+
+.navMenu > .ulMenu > .titDep .boxSubFerramentas  > ul {
+
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 20px;
+    padding: 20px 10px;
+    
+}
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(3):hover) ~ .box:nth-of-type(3){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep > .boxSubFerramentas:hover{
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep .boxSubFerramentas > ul > li:hover {
+
+    color: #FF3E41;
+    
+}
+
+
+.navMenu > .ulMenu > .titDep .boxIlum {
+
+    position: absolute;
+    background-color: white;
+    color: gray;
+    /* display: flex;
+    flex-direction: column;
+    gap: 10px; */
+    width: 0px;
+    left: 240px;
+    top: 60px;
+    height: 299px;
+    z-index: 1;
+    transition: 300ms;
+    overflow: hidden;
+     
+
+
+    & h3{
+
+         padding-top: 20px;
+         padding-left: 10px;
+    }
+}
+
+.navMenu > .ulMenu > .titDep .boxIlum  > ul {
+
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 20px;
+    padding: 20px 10px;
+    
+}
+
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(4):hover) ~ .box:nth-of-type(4){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep > .boxIlum:hover{
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep .boxIlum > ul > li:hover {
+
+    color: #FF3E41;
+    
+}
+
+
+
+.navMenu > .ulMenu > .titDep .boxPint {
+
+    position: absolute;
+    background-color: white;
+    color: gray;
+    /* display: flex;
+    flex-direction: column;
+    gap: 10px; */
+    width: 0px;
+    left: 240px;
+    top: 60px;
+    height: 299px;
+    z-index: 1;
+    transition: 300ms;
+    overflow: hidden;
+     
+
+
+    & h3{
+
+         padding-top: 20px;
+         padding-left: 10px;
+    }
+}
+
+.navMenu > .ulMenu > .titDep .boxPint  > ul {
+
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 20px;
+    padding: 20px 10px;
+    
+}
+
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(5):hover) ~ .box:nth-of-type(5){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep > .boxPint:hover{
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep .boxPint > ul > li:hover {
+
+    color: #FF3E41;
+    
 }
     
 

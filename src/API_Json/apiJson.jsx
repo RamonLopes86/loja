@@ -21,12 +21,10 @@ export default function Ajson() {
     const [dados, setDados] = useState([])
     const [produtos, setProdutos] = useState([])
     const [input, setInput] = useState('')
+    const [depart, setDep] = useState([])
+    const [subDepartMatEle, setSubDepartMatEle] = useState([])
 
-    const [cond, setCond] = useState(false)
-    const timeoutRef = useRef(null);
 
-
-    const [animaFerr, setAnimaFer] = useState(estiloJson.animaFerrOff)
 
 
 
@@ -54,11 +52,15 @@ export default function Ajson() {
 
         setProdutos(responseProdutos.data.products)
 
+        setDep(responseProdutos.data.departaments)
 
-        console.log(responseProdutos.data)
+        setSubDepartMatEle(responseProdutos.data.departaments)
 
 
     }
+
+
+
 
 
     async function pesquisar(ev) {
@@ -110,8 +112,11 @@ export default function Ajson() {
         consumirJson()
 
 
+        return () => { consumirJson() }
 
     }, [])
+
+
 
 
 
@@ -139,9 +144,6 @@ export default function Ajson() {
 
 
     }, [input])
-
-
-
 
 
 
@@ -182,19 +184,68 @@ export default function Ajson() {
 
 
                                     <ul className={estiloJson.subDep}>
-                                        <li>Ferragens</li>
-                                        <li>Materiais Elétricos</li>
-                                        <li>Ferramentas</li>
-                                        <li>Iluminação</li>
-                                        <li>Pintura</li>
-                                        <li>Sinalização</li>
-                                        <li>Materiais hidraulicos</li>
-                                        <li>Segurança</li>
-                                        <li>Durchas e Chuveiros</li>
-                                        <li>Equipamentos</li>
+                                        {/* <li>Ferragens <Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Materiais Elétricos <Image alt='images' width={15} height={15} src={seta} />  </li>
+                                        <li>Ferramentas <Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Iluminação <Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Pintura <Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Sinalização<Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Materiais hidraulicos<Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Segurança <Image alt='images' width={15} height={15} src={seta} /> </li>
+                                        <li>Durchas e Chuveiros<Image width={15} height={15} src={seta} /> </li>
+                                        <li>Equipamentos<Image alt='images' width={15} height={15} src={seta} /> </li> */}
+
+                                        {
+                                            depart.map((depart, index) => {
+
+                                                return (
+
+                                                    <li key={index}>{depart.name} <Image alt='imagem seta' width={15} height={15} src={seta} /> </li>
+                                                )
+                                            })
+                                        }
+
+
                                     </ul>
 
-                                    <section className={`${estiloJson.boxSubFerr} ${estiloJson.box} `}>
+                                    {
+
+                                        subDepartMatEle.map((subDep , index)=>{
+
+                                            return(
+
+                                                <section className={`${estiloJson.boxSubFerr} ${estiloJson.box}`} key={index}>
+
+                                                       
+
+                                                    {
+                                                         
+                                                         index === index ?  subDep.categories.map((sub)=>{return(
+
+                                                          
+                                                            <ul style={{color:'red', fontSize:'0.8rem'}}>
+
+                                                                <li>
+                                                                    {sub.name}
+                                                                </li>
+
+                                                            </ul>
+
+                                                        )}) :
+
+                                                          null
+
+                                                    } 
+
+                                                    
+
+                                                </section>
+                                            )
+                                        })
+
+                                    }
+
+                                    {/* <section className={`${estiloJson.boxSubFerr} ${estiloJson.box} `}>
 
                                         <h3>Ferragens</h3>
 
@@ -208,10 +259,12 @@ export default function Ajson() {
                                             <li>Correntes e cabos de aço</li>
                                         </ul>
 
-                                    </section>
+                                            
+                                    </section> */}
 
 
-                                    <section className={`${estiloJson.boxSubmatEle} ${estiloJson.box}`}>
+
+                                    {/* <section className={`${estiloJson.boxSubmatEle} ${estiloJson.box}`}>
 
                                         <h3>Materiais Elétricos</h3>
 
@@ -229,9 +282,9 @@ export default function Ajson() {
                                         </ul>
 
 
-                                    </section>
+                                    </section> */}
 
-                                    <section className={`${estiloJson.boxSubFerramentas} ${estiloJson.box}`}>
+                                    {/* <section className={`${estiloJson.boxSubFerramentas} ${estiloJson.box}`}>
 
                                         <h3>Ferramentas</h3>
 
@@ -249,7 +302,48 @@ export default function Ajson() {
                                         </ul>
 
 
-                                    </section>
+                                    </section> */}
+
+                                    {/* <section className={`${estiloJson.boxIlum} ${estiloJson.box}`}>
+
+                                        <h3>Iluminação</h3>
+
+                                        <ul>
+                                            <li>Lâmpadas Frias</li>
+                                            <li>Lampadas Coloridas</li>
+                                            <li>Refletores</li>
+                                            <li>Arandelas</li>
+                                            <li>Alicates</li>
+                                            <li>Lampadas Quentes</li>
+                                            <li>Luminárias</li>
+                                            <li>Lâmpadas inteligentes</li>
+                                            <li>Fitas de Led</li>
+
+                                        </ul>
+
+
+                                    </section> */}
+
+
+                                    {/* <section className={`${estiloJson.boxPint} ${estiloJson.box}`}>
+
+                                        <h3>Pintura</h3>
+
+                                        <ul>
+                                            <li>Tinta látex</li>
+                                            <li>Massas para alisamento</li>
+                                            <li>Proteção e segurança</li>
+                                            <li>Solventes e diluentes</li>
+                                            <li>Sprays</li>
+                                            <li>Removedores de tinta</li>
+                                            <li>Texturas e efeitos decorativos</li>
+                                            <li>Primers e seladores</li>
+
+
+                                        </ul>
+
+
+                                    </section> */}
 
 
                                 </li>
