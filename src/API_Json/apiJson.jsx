@@ -205,35 +205,39 @@ export default function Ajson() {
                                             })
                                         }
 
-
                                     </ul>
+
 
                                     {
 
-                                        subDepartMatEle.map((subDep , index)=>{
+                                        subDepartMatEle.map((subDep ,index)=>{
 
                                             return(
 
-                                                <section className={`${estiloJson.boxSubFerr} ${estiloJson.box}`} key={index}>
+                                                <section className={`${estiloJson.boxUniversal} ${estiloJson.box}`} key={index}>
 
-                                                       
+                                                        <h3>{subDep.name}</h3>
 
                                                     {
+
+
+                                                        <ul className={estiloJson.ulUniversal}>
+
+                                                            {
+                                                                subDep.categories.map((sub)=>{
+
+                                                                    return(
+
+                                                                        <li>{sub.name}</li>
+                                                                    )
+
+                                                                })
+                                                            }
+
+                                                        </ul>
                                                          
-                                                         index === index ?  subDep.categories.map((sub)=>{return(
-
+                                                 
                                                           
-                                                            <ul style={{color:'red', fontSize:'0.8rem'}}>
-
-                                                                <li>
-                                                                    {sub.name}
-                                                                </li>
-
-                                                            </ul>
-
-                                                        )}) :
-
-                                                          null
 
                                                     } 
 

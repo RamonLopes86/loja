@@ -378,6 +378,93 @@
     color: #FF3E41;
     
 }
+
+
+
+/*a partir daqui foi com o  que fiz quando passei os subitens com o map consumindo o json*/
+
+
+.navMenu > .ulMenu > .titDep .boxUniversal {
+
+    position: absolute;
+    background-color: white;
+    color: gray;
+    /* display: flex;
+    flex-direction: column;
+    gap: 10px; */
+    width: 0px;
+    left: 240px;
+    top: 60px;
+    height: 299px;
+    z-index: 1;
+    transition: 300ms;
+    overflow: hidden;
+     
+
+
+    & h3{
+
+         padding-top: 20px;
+         padding-left: 10px;
+    }
+}
+
+.navMenu > .ulMenu > .titDep .boxUniversal .ulUniversal {
+
+    
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 20px 50px;
+    padding: 20px 10px;
+    
+    
+}
+
+
+
+.navMenu > .ulMenu > .titDep .boxUniversal > ul > li {
+
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.navMenu > .ulMenu > .titDep > .boxUniversal:hover{
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep .boxUniversal > ul > li:hover {
+
+    color: #FF3E41;
+    
+}
+
+
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(6):hover) ~ .box:nth-of-type(6){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(7):hover) ~ .box:nth-of-type(7){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(8):hover) ~ .box:nth-of-type(8){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(9):hover) ~ .box:nth-of-type(9){
+
+    width: 500px;
+}
+
+.navMenu > .ulMenu > .titDep:hover > .subDep:has(li:nth-of-type(10):hover) ~ .box:nth-of-type(10){
+
+    width: 500px;
+}
     
 
 /**/
