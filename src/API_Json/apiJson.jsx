@@ -2,31 +2,45 @@ import estiloJson from './json.module.css';
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging , faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import seta from '../public/seta.png'
-
-
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import 'Swiper/css'
+import 'Swiper/css/navigation'
+import 'Swiper/css/pagination'
 import Image from 'next/image';
-
-
-
-
 
 
 
 
 export default function Ajson() {
 
+    const icons = {
+
+        faBolt: faBolt,
+        faScrewdriverWrench: faScrewdriverWrench,
+        faSquarePersonConfined: faSquarePersonConfined,
+        faBoltLightning: faBoltLightning,
+        faDroplet: faDroplet,
+        faShower: faShower,
+        faShieldHalved: faShieldHalved,
+        faBrush: faBrush,
+        faToolbox: faToolbox,
+        faSignHanging: faSignHanging
+    }
+
     const [dados, setDados] = useState([])
     const [produtos, setProdutos] = useState([])
     const [input, setInput] = useState('')
     const [depart, setDep] = useState([])
     const [subDepartMatEle, setSubDepartMatEle] = useState([])
+    const [condButton , setCondButton] = useState(estiloJson.botaoLiga)
 
+    const refProdutos = useRef()
+    const refBoxProdutos = useRef()
 
-
-
+   
 
     async function consumirJson() {
 
@@ -37,6 +51,8 @@ export default function Ajson() {
         try {
 
             setDados(response.data.brands)
+
+            
 
         } catch (error) {
 
@@ -56,11 +72,11 @@ export default function Ajson() {
 
         setSubDepartMatEle(responseProdutos.data.departaments)
 
+        
+        
+       
 
     }
-
-
-
 
 
     async function pesquisar(ev) {
@@ -76,7 +92,8 @@ export default function Ajson() {
             if (input.length === 0) {
 
                 alert('digite algo')
-
+                
+                
 
             }
 
@@ -84,6 +101,9 @@ export default function Ajson() {
 
                 setProdutos(responsePesquisa.data)
 
+                setCondButton(estiloJson.botaoDesliga)
+
+               
 
 
                 window.history.pushState({}, '', `?nome=${input}`)
@@ -107,18 +127,72 @@ export default function Ajson() {
     }
 
 
+    function actionButton(param){
+
+       
+      
+
+        if(window.innerWidth <= 1300){
+
+            if(param === 'next'){
+
+                if(refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth){
+    
+                  return  refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 1.3
+                }
+        
+        
+            }
+            
+            else if (param === 'back'){
+    
+                if(refBoxProdutos.current){
+    
+                  return  refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 1.3
+              }
+    
+            }
+            
+        }else{
+
+
+            if(param === 'next'){
+
+                if(refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth){
+    
+                  return  (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 5.4)  
+                }
+        
+        
+            }
+            
+            else if (param === 'back'){
+    
+                if(refBoxProdutos.current){
+    
+                  return  (refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 5.4) 
+              }
+    
+            }
+
+
+        }
+
+       
+
+    }
+
+
+
+
+
     useEffect(() => {
 
         consumirJson()
 
-
-        return () => { consumirJson() }
+    
 
     }, [])
-
-
-
-
 
 
 
@@ -130,6 +204,8 @@ export default function Ajson() {
             if (input.length === 0) {
 
                 consumirProdutos()
+
+                setCondButton(estiloJson.botaoLiga)
 
                 window.history.pushState({}, '', window.location.pathname);
             } else {
@@ -147,12 +223,15 @@ export default function Ajson() {
 
 
 
-
+   
+    
 
 
     return (
 
         <section className={estiloJson.boxJson}>
+
+
 
 
             <section className={estiloJson.boxPaiTop}>
@@ -164,8 +243,8 @@ export default function Ajson() {
                             <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
                         </div>
                         <form onSubmit={pesquisar}>
-                            <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='pesquise o item desejado' type="text" name="pesquisa" id="idpesquisa" />
-                            <button type='submit'>pesquisar</button>
+                            <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo pruduto' type="text" name="pesquisa" id="idpesquisa" />
+                            <button type='submit'><FontAwesomeIcon className={estiloJson.iconPesq} icon={faMagnifyingGlass} /> </button>
                         </form>
                         <div className={estiloJson.boxLocaliza}>
                             <FontAwesomeIcon className={estiloJson.iconLocaliza} icon={faLocationDot} />
@@ -180,7 +259,9 @@ export default function Ajson() {
 
                             <ul className={estiloJson.ulMenu}>
 
-                                <li className={estiloJson.titDep}>Departamentos
+                                <li className={estiloJson.titDep}>
+
+                                    <div><FontAwesomeIcon icon={faBars} /> Departamentos</div>
 
 
                                     <ul className={estiloJson.subDep}>
@@ -210,13 +291,13 @@ export default function Ajson() {
 
                                     {
 
-                                        subDepartMatEle.map((subDep ,index)=>{
+                                        subDepartMatEle.map((subDep, index) => {
 
-                                            return(
+                                            return (
 
                                                 <section className={`${estiloJson.boxUniversal} ${estiloJson.box}`} key={index}>
 
-                                                        <h3>{subDep.name}</h3>
+                                                    <h3>{subDep.name}</h3>
 
                                                     {
 
@@ -224,24 +305,24 @@ export default function Ajson() {
                                                         <ul className={estiloJson.ulUniversal}>
 
                                                             {
-                                                                subDep.categories.map((sub)=>{
+                                                                subDep.categories.map((sub, index) => {
 
-                                                                    return(
+                                                                    return (
 
-                                                                        <li>{sub.name}</li>
+                                                                        <li key={index}>{sub.name}</li>
                                                                     )
 
                                                                 })
                                                             }
 
                                                         </ul>
-                                                         
-                                                 
-                                                          
 
-                                                    } 
 
-                                                    
+
+
+                                                    }
+
+
 
                                                 </section>
                                             )
@@ -352,6 +433,12 @@ export default function Ajson() {
 
                                 </li>
 
+                                <li>Promoções do Dia</li>
+                                <li>Cupons</li>
+                                <li>Serviços</li>
+                                <li>Dicas</li>
+                                <li>Suporte</li>
+
                             </ul>
 
 
@@ -369,7 +456,125 @@ export default function Ajson() {
 
             </section>
 
+
+            <section className={estiloJson.boxDepartamentos}>
+
+                <h1 className={estiloJson.hTit}>Navegue por Departamentos :</h1>
+
+            
+
+                        <Swiper
+
+                            className={estiloJson.boxPaiSwiper}
+                            modules={[Navigation, Pagination, Autoplay]}
+                            slidesPerView={8}            
+                            spaceBetween={0}
+                            simulateTouch={true}
+                            grabCursor={true}
+                            
+                            breakpoints={
+                                
+                                {
+                                    100:{slidesPerView:1},
+                                    500:{slidesPerView:3},
+                                    600:{slidesPerView:4},
+
+                                    900:{slidesPerView:6},
+
+                                    1024:{slidesPerView:8}
+                                }
+                                    
+                            }
+                                
+                            
+                        >
+                            
+                            
+                        
+                            {
+                                depart.map((depart , index) => {
+                                    return (
+
+                                        <SwiperSlide key={index} className={estiloJson.boxSwiper}>
+                                            <div className={estiloJson.boxCardDep}>
+                                                <div className={estiloJson.boxDepIcon}>
+                                                    <FontAwesomeIcon className={estiloJson.iconDep} icon={icons[depart.icon]} />
+                                                </div>
+                                                <h3>{depart.name}</h3>
+                                            </div>
+                                        </SwiperSlide>
+
+                                    )
+                                })
+                            }
+
+
+
+                        </Swiper>
+                   
+
+
+
+
+
+
+
+                
+
+
+            </section>
+
+
+            <section className={`${estiloJson.boxBotoes} `}>
+
+                <div className={`${estiloJson.boxBtnPrevNext} ${condButton}  `} >
+
+                            <FontAwesomeIcon onClick={()=> actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight}/>
+                            <FontAwesomeIcon onClick={()=> actionButton('back') } style={{transform:'rotate(180deg)'}} className={estiloJson.iconPrevNext}  icon={faChevronRight}/>
+                </div>    
+
+                <section ref={refBoxProdutos} className={estiloJson.boxPromocoes}>
+                
+                    {
+                        produtos.map((produtos, index) => {
+
+                            return (
+
+                                <div ref={refProdutos} key={index} className={estiloJson.produtos}>
+                                            {
+                                                produtos.images.length > 0 ? <Image className={estiloJson.iconProd} width={200} height={200} alt={produtos.name} src={produtos.images[0]} /> : <Image className={estiloJson.iconProd} width={200} height={20} src={produtos.images} />
+                                            }
+                                            <div className={estiloJson.boxTx}>
+                                                {
+                                                    produtos.promotionalPrice === null ? <span>SEM ESTOQUE</span> : <span>{(((produtos.promotionalPrice - produtos.price) / produtos.promotionalPrice) * 100).toFixed(0)} % </span>
+                                                }
+                                                <p>{produtos.name}</p>
+                                                <div className={estiloJson.boxStar}>
+                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                                </div>
+                                                <p> R$ {produtos.price}</p>
+                                                <p> R$ {produtos.promotionalPrice}</p>
+                                                <p>{produtos.quantilyInStock}</p>
+                                                <p>12x de {(produtos.price / 12).toFixed(2)} sem juros</p>
+                                            </div>
+                                            <div className={estiloJson.boxComprar}>
+                                                <button>comprar</button>
+                                            </div>
+                                </div>
+                            )
+                        })
+                    }
+                </section>
+            </section>
+
+
             <section className={estiloJson.boxPaiMarcas}>
+
+                <h1>Navegue pelas Marcas:</h1>
 
                 <section className={estiloJson.boxMarcas}>
                     {
@@ -384,53 +589,6 @@ export default function Ajson() {
                 </section>
 
             </section>
-
-
-            <section className={estiloJson.boxPromocoes}>
-
-
-                {
-                    produtos.map((produtos, index) => {
-                        return (
-                            <div key={index} className={estiloJson.produtos}>
-
-
-                                {
-
-                                    produtos.images.length > 0 ? <Image className={estiloJson.iconProd} width={200} height={200} alt={produtos.name} src={produtos.images[0]} /> : <Image className={estiloJson.iconProd} width={200} height={20} src={produtos.images} />
-
-
-                                }
-
-                                <div className={estiloJson.boxTx}>
-
-                                    {
-                                        produtos.promotionalPrice === null ? <span>SEM ESTOQUE</span> : <span>{(((produtos.promotionalPrice - produtos.price) / produtos.promotionalPrice) * 100).toFixed(0)} % </span>
-                                    }
-
-                                    <p>{produtos.name}</p>
-                                    <div className={estiloJson.boxStar}>
-                                        <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                        <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                        <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                        <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                        <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                    </div>
-                                    <p> R$ {produtos.price}</p>
-                                    <p> R$ {produtos.promotionalPrice}</p>
-                                    <p>{produtos.quantilyInStock}</p>
-                                    <p>12x de {(produtos.price / 12).toFixed(2)} sem juros</p>
-                                </div>
-                                <div className={estiloJson.boxComprar}>
-
-                                    <button>comprar</button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </section>
-
 
         </section>
 
