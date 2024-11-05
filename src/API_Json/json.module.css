@@ -824,11 +824,11 @@
     overflow: visible;
     display: grid;
     grid-template-columns: repeat(auto-fill , 230px);
-    gap: 10px;
+    gap: 40px 10px;
    padding: 20px 10px;
    place-content: center;
-
 }
+
 
 .boxPromocoesSemFlex{
 
@@ -846,9 +846,6 @@
 
 
     
-
-
-
    
 
 .boxJson .boxBotoes .boxBtnPrevNext{
