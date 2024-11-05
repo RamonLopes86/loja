@@ -35,7 +35,8 @@ export default function Ajson() {
     const [input, setInput] = useState('')
     const [depart, setDep] = useState([])
     const [subDepartMatEle, setSubDepartMatEle] = useState([])
-    const [condButton, setCondButton] = useState(estiloJson.botaoLiga)
+    const[depPesq , setDepPesq] = useState(estiloJson.boxPromocoesSemFlex)
+    const [animabtn , setAnimaBtn] = useState(estiloJson.botaoLiga)
     const [blog, setBlog] = useState([])
     const [cupom , setCupom] = useState([])
 
@@ -58,7 +59,8 @@ export default function Ajson() {
 
             setCupom(response.data.cupons)
 
-
+           
+            
 
         } catch (error) {
 
@@ -78,6 +80,10 @@ export default function Ajson() {
 
         setSubDepartMatEle(responseProdutos.data.departaments)
 
+        setDepPesq(estiloJson.boxPromocoesSemFlex)
+
+        
+
     }
 
 
@@ -93,30 +99,30 @@ export default function Ajson() {
 
             const responsePesquisa = await axios.get(`http://localhost:8080/consulta?nome=${input}`)
 
-
+            
+           
 
             if (input.length === 0) {
 
                 alert('digite algo')
-
-
-
+                setAnimaBtn(estiloJson.botaoLiga)
             }
+
+           
+            
 
             if (responsePesquisa.data.length > 0) {
 
                 setProdutos(responsePesquisa.data)
-
-                setCondButton(estiloJson.botaoDesliga)
-
-
-
-
                 window.history.pushState({}, '', `?nome=${input}`)
+                
+                setDepPesq(estiloJson.boxPromocoesFlex)
+                setAnimaBtn(estiloJson.botaoDesliga)
 
             } else {
 
-
+                setAnimaBtn(estiloJson.botaoLiga)
+                setDepPesq(estiloJson.boxPromocoesSemFlex)
                 window.history.pushState({}, '', `?nome=${input}`)
                 alert('produto nao encontrado')
             }
@@ -136,26 +142,34 @@ export default function Ajson() {
     function actionButton(param) {
 
 
-
+      
 
         if (window.innerWidth <= 1300) {
 
+          
+
             if (param === 'next') {
+
+               
 
                 if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
 
                     return refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 1.3
                 }
+              
 
 
             }
 
             else if (param === 'back') {
 
+            
+
                 if (refBoxProdutos.current) {
 
                     return refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 1.3
                 }
+            
 
             }
 
@@ -164,10 +178,16 @@ export default function Ajson() {
 
             if (param === 'next') {
 
-                if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
+             
 
-                    return (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 3)
-                }
+                    if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
+
+                        return (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 3 )
+                    }
+    
+                        
+                        
+               
 
 
             }
@@ -196,7 +216,7 @@ export default function Ajson() {
 
         consumirJson()
 
-
+      
 
     }, [])
 
@@ -210,8 +230,8 @@ export default function Ajson() {
             if (input.length === 0) {
 
                 consumirProdutos()
-
-                setCondButton(estiloJson.botaoLiga)
+                setAnimaBtn(estiloJson.botaoLiga)
+                
 
                 window.history.pushState({}, '', window.location.pathname);
             } else {
@@ -530,13 +550,13 @@ export default function Ajson() {
 
             <section className={`${estiloJson.boxBotoes} `}>
 
-                <div className={`${estiloJson.boxBtnPrevNext} ${condButton}  `} >
+                <div className={`${estiloJson.boxBtnPrevNext} ${animabtn} `} >
 
-                    <FontAwesomeIcon onClick={() => actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight} />
+                    <FontAwesomeIcon onClick={() => actionButton('next')  } className={estiloJson.iconPrevNext} icon={faChevronRight} />
                     <FontAwesomeIcon onClick={() => actionButton('back')} style={{ transform: 'rotate(180deg)' }} className={estiloJson.iconPrevNext} icon={faChevronRight} />
                 </div>
 
-                <section ref={refBoxProdutos} className={estiloJson.boxPromocoes}>
+                <section ref={refBoxProdutos} className={` ${depPesq}`} >
 
                     {
                         produtos.map((produtos, index) => {
@@ -593,7 +613,7 @@ export default function Ajson() {
                     <Swiper
 
 
-                       
+                       slidesPerView={8}
                         spaceBetween={20}
                         modules={[Autoplay]}
                         autoplay={{ delay: 0 }}

@@ -795,16 +795,6 @@
 .boxJson .boxPromocoes {
 
 
-    /* display:flex;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0px 20px;
-    align-items: center;
-    justify-content: center;
-   padding: 40px 10px; */
-
     display: flex;
     flex-direction: row;
    align-items: center;
@@ -814,10 +804,64 @@
     overflow: hidden;
    margin: 0px auto;
    padding: 20px 10px;
-
    scroll-behavior: smooth;
-   
+
 }
+   
+
+.boxPromocoesFlex{
+
+    overflow: visible;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , 230px);
+    gap: 10px;
+   padding: 20px 10px;
+   place-content: center;
+
+}
+
+.boxPromocoesSemFlex{
+
+    display: flex;
+    flex-direction: row;
+   align-items: center;
+   justify-content: flex-start;
+   gap: 20px;
+   max-width: 1250px;
+    overflow-x: scroll;
+   margin: 0px auto;
+   padding: 20px 10px;
+   scroll-behavior: smooth;
+}
+
+.boxPromocoesSemFlex::-webkit-scrollbar{
+
+    height: 10px;
+    background-color: rgba(128, 128, 128, 0.548);
+    border-radius: 10px;
+}
+
+.boxPromocoesSemFlex::-webkit-scrollbar-thumb{
+
+    background-color:#34219F;
+    border-radius: 10px;
+    
+}
+
+.boxPromocoesSemFlex::-webkit-scrollbar-thumb:hover{
+
+    cursor: grab;
+    
+}
+
+.boxPromocoesSemFlex::-webkit-scrollbar-thumb:active{
+
+    cursor: grabbing;
+    
+}
+    
+
+
 
    
 
@@ -858,10 +902,10 @@
  
     
 
-.boxJson .boxPromocoes .produtos {
+.boxJson .boxPromocoesFlex .produtos {
 
     
-    /* flex-basis: 230px; */
+   
     min-height: 400px;
     border: 1px solid rgb(224, 222, 222);
     display: flex;
@@ -879,18 +923,28 @@
 }
 
 
-
-
-
-
+.boxJson .boxPromocoesSemFlex .produtos {
 
     
-
+   
+    min-height: 400px;
+    border: 1px solid rgb(224, 222, 222);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    position: relative;
+    cursor: pointer;
+    transition: 400ms;
+    overflow: hidden;
+    flex: none;
+    width: 230px;
 
    
+}
 
 
-.boxJson .boxPromocoes .produtos:hover{
+.boxJson .boxPromocoesFlex .produtos:hover{
 
     border: 1px solid #FF3E41;
     transition: 400ms;
@@ -898,7 +952,15 @@
 }
 
 
-.boxJson .boxPromocoes .produtos .boxComprar{
+.boxJson .boxPromocoesSemFlex .produtos:hover{
+
+    border: 1px solid #FF3E41;
+    transition: 400ms;
+       
+}
+
+
+.boxJson .boxPromocoesFlex .produtos .boxComprar{
 
     width: 100%;
     min-height: 50px;
@@ -912,7 +974,21 @@
     cursor: pointer;
 }
 
-.boxJson .boxPromocoes .produtos .boxComprar button{
+.boxJson .boxPromocoesSemFlex .produtos .boxComprar{
+
+    width: 100%;
+    min-height: 50px;
+    background-color: #FF3E41;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(10vh);
+    transition: 400ms;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.boxJson .boxPromocoesFlex .produtos .boxComprar button{
 
     border: none;
     color: white;
@@ -922,14 +998,39 @@
 
 }
 
-.boxJson .boxPromocoes .produtos:hover > .boxComprar{
+.boxJson .boxPromocoesSemFlex .produtos .boxComprar button{
+
+    border: none;
+    color: white;
+    background-color: #FF3E41;
+    text-transform: uppercase;
+    cursor: pointer;
+
+}
+
+.boxJson .boxPromocoesFlex .produtos:hover > .boxComprar{
+
+    transform: translateY(min(-130px));
+       
+}
+
+.boxJson .boxPromocoesSemFlex .produtos:hover > .boxComprar{
 
     transform: translateY(min(-130px));
        
 }
    
 
-.boxJson .boxPromocoes .produtos .boxTx {
+.boxJson .boxPromocoesFlex .produtos .boxTx {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px 5px;
+   
+}
+
+.boxJson .boxPromocoesSemFlex .produtos .boxTx {
 
     display: flex;
     flex-direction: column;
@@ -939,7 +1040,7 @@
 }
    
 
-.boxJson .boxPromocoes .produtos p:nth-of-type(1) {
+.boxJson .boxPromocoesFlex .produtos p:nth-of-type(1) {
 
     font-size:1.09rem;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -948,7 +1049,16 @@
    
 }
 
-.boxJson .boxPromocoes .produtos p:nth-of-type(2) {
+.boxJson .boxPromocoesSemFlex .produtos p:nth-of-type(1) {
+
+    font-size:1.09rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: gray;
+    padding-left: 2px;
+   
+}
+
+.boxJson .boxPromocoesFlex .produtos p:nth-of-type(2) {
 
     font-size: 1rem;
     color: gray;
@@ -956,7 +1066,23 @@
    
 }
 
-.boxJson .boxPromocoes .produtos p:nth-of-type(3) {
+.boxJson .boxPromocoesSemFlex .produtos p:nth-of-type(2) {
+
+    font-size: 1rem;
+    color: gray;
+   text-decoration: line-through;
+   
+}
+
+.boxJson .boxPromocoesFlex .produtos p:nth-of-type(3) {
+
+    font-size: 1.3rem;
+    color: black;
+   
+   
+}
+
+.boxJson .boxPromocoesSemFlex .produtos p:nth-of-type(3) {
 
     font-size: 1.3rem;
     color: black;
