@@ -8,7 +8,7 @@
 
 .boxJson .boxPaiMarcas{
 
-    padding: 80px 10px 20px 10px;
+    padding: 80px 10px 20px 0px;
     width: 100%;
     max-width: 1300px;
     margin: 0px auto;
@@ -720,12 +720,22 @@
     padding: 20px 10px;
     gap: 20px;
     max-width: 1300px;
-    
-    overflow-x: scroll;
+    overflow:hidden;
     margin: 0px auto;
 
+    mask-image: linear-gradient(to right , 
+             
+    rgba(0,0,0,0),
+    rgba(0,0,0,1)20%,
+    rgba(0,0,0,1)80%,
+    rgba(0,0,0,0)
+        
+    );
+    
     
 }
+
+    
     
 
 
@@ -1000,8 +1010,279 @@
 
 
 
+.boxJson .boxPorDentro{
+
+    max-width: 1300px;
+    margin: 0px auto;
+   
+    padding: 40px 0px 80px 0px;
+
+
+    & h1{
+
+        font-size: 1.5rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: gray;
+    }
+}
+
+.boxJson .boxPorDentro .boxPaiPorDentro{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    overflow-x: scroll;
+    padding: 20px 0px;
+    
+}
+
+.boxJson .boxPorDentro .boxPaiPorDentro::-webkit-scrollbar{
+
+    
+    height: 10px;
+    
+}
+
+.boxJson .boxPorDentro .boxPaiPorDentro::-webkit-scrollbar-thumb{
+
+    background-color: #34219F;
+    border-radius: 10px;
+    cursor:grab;
+    
+}
+
+.boxJson .boxPorDentro .boxPaiPorDentro::-webkit-scrollbar-thumb:active{
+
+    background-color: #34219f88;
+    border-radius: 10px;
+    cursor:grabbing;
+    
+}
+
+.boxJson .boxPorDentro .boxPaiPorDentro::-webkit-scrollbar-track{
+
+   background-color: rgba(128, 128, 128, 0.418);
+}
+    
+    
+
+    
+
+.boxJson .boxPorDentro .boxPaiPorDentro .molduraPorDentro{
+    
+    border-radius: 10px;
+   
+     display: flex;
+     flex-direction: column;
+     gap: 20px;   
+    flex: none;
+    width: 350px;
+    border: 1px solid rgba(128, 128, 128, 0.644);
+    padding: 5px; 
+    justify-content: space-between;
+
+    & p{
+
+        font-size: 1.1rem;
+        color: gray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    & button{
+
+        padding: 5px;
+        border: none;
+        color: gray;
+        margin-top: 50px;
+        cursor: pointer;
+        transition: 250ms;
+        border-radius: 5px;
+        
+    }
+
+    & button:hover{
+
+        background-color: #FF3E41;
+        color: white;
+        transition: 400ms;
+        transition-timing-function: linear;
+
+    }
+
+
+
+    & .iconDentro{
+
+        border-radius: 10px 10px 0px 0px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+}
+    
+   
+.boxJson .boxPaiCupons{
+
+    padding: 40px 10px;
+}
+
+
+.boxJson .boxPaiCupons .boxCupons{
+
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1500px;
+    margin: 0px auto;
+    flex-wrap: wrap;  */
+
+    display: grid;
+    grid-template-columns: repeat(2 , minmax(300px , 650px));
+    gap: 20px;
+    place-content: center;
+
+}
+    
+
+
+.boxJson .boxPaiCupons .boxCupons .moldCupom{
+
+       
+        min-height: 150px;
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        border-radius: 10px;
+        position: relative;
+
+
+        
+
+        & .moldTx{
+
+           
+            min-height: 150px;
+            text-align: left;
+            border-radius: 10px;
+            width: 80%;
+            background-image: linear-gradient( to right  ,  #34219ffa 60% ,    rgba(255,0,0,0) );
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items:flex-start;
+            padding-left: 50px;
+            padding-top: 20px;
+
+            & h2{
+
+                max-width: 300px;
+                text-transform: uppercase;
+                font-size: 1.3rem;
+            }
+            
+        }
+
+
+        & .boxDesconto{
+
+            width: fit-content;
+            background-color: #FF3E41;
+            padding: 10px 13px;
+            text-transform: uppercase;
+            position: absolute;
+            right: 0;
+            border-radius: 0px 10px 0px 10px;
+            font-family: cursive , sans-serif;
+            font-weight: bold;
+
+        }
+           
+            
+
+    }
+
+    .boxJson .boxPaiCupons .boxCupons .moldCupom::after{
+
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50% , -50%);
+
+    }
+
+    .boxJson .boxPaiCupons .boxCupons .moldCupom::before{
+
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        right: -50px;
+       
+        transform: translate(-50% , -50%);
+
+    }
+
+        
+
+
+@media screen and (max-width:480px) {
+
+    .boxJson .boxPaiCupons .boxCupons .moldCupom .moldTx{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        
+
+        & h2{
+
+            font-size: 4vw;
+            position: relative;
+            left: 5px;
+        }
+
+    }
    
    
+
+    
+
+}
+
+
+
+@media screen and (max-width:920px) {
+
+
+    .boxJson .boxPaiCupons .boxCupons{
+
+        grid-template-columns: repeat(1 , 1fr);
+    }
+
+}
+
+
+
+
+
+
    
 
 

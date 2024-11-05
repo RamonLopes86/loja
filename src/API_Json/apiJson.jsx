@@ -2,7 +2,7 @@ import estiloJson from './json.module.css';
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging , faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import seta from '../public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -35,12 +35,14 @@ export default function Ajson() {
     const [input, setInput] = useState('')
     const [depart, setDep] = useState([])
     const [subDepartMatEle, setSubDepartMatEle] = useState([])
-    const [condButton , setCondButton] = useState(estiloJson.botaoLiga)
+    const [condButton, setCondButton] = useState(estiloJson.botaoLiga)
+    const [blog, setBlog] = useState([])
+    const [cupom , setCupom] = useState([])
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
 
-   
+
 
     async function consumirJson() {
 
@@ -52,7 +54,11 @@ export default function Ajson() {
 
             setDados(response.data.brands)
 
-            
+            setBlog(response.data.blog)
+
+            setCupom(response.data.cupons)
+
+
 
         } catch (error) {
 
@@ -72,11 +78,11 @@ export default function Ajson() {
 
         setSubDepartMatEle(responseProdutos.data.departaments)
 
-        
-        
-       
-
     }
+
+
+
+
 
 
     async function pesquisar(ev) {
@@ -92,8 +98,8 @@ export default function Ajson() {
             if (input.length === 0) {
 
                 alert('digite algo')
-                
-                
+
+
 
             }
 
@@ -103,7 +109,7 @@ export default function Ajson() {
 
                 setCondButton(estiloJson.botaoDesliga)
 
-               
+
 
 
                 window.history.pushState({}, '', `?nome=${input}`)
@@ -121,64 +127,64 @@ export default function Ajson() {
 
         }
 
-
-
-
     }
 
 
-    function actionButton(param){
 
-       
-      
 
-        if(window.innerWidth <= 1300){
 
-            if(param === 'next'){
+    function actionButton(param) {
 
-                if(refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth){
-    
-                  return  refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 1.3
+
+
+
+        if (window.innerWidth <= 1300) {
+
+            if (param === 'next') {
+
+                if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
+
+                    return refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 1.3
                 }
-        
-        
+
+
             }
-            
-            else if (param === 'back'){
-    
-                if(refBoxProdutos.current){
-    
-                  return  refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 1.3
-              }
-    
-            }
-            
-        }else{
 
+            else if (param === 'back') {
 
-            if(param === 'next'){
+                if (refBoxProdutos.current) {
 
-                if(refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth){
-    
-                  return  (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 5.4)  
+                    return refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 1.3
                 }
-        
-        
+
             }
-            
-            else if (param === 'back'){
-    
-                if(refBoxProdutos.current){
-    
-                  return  (refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 5.4) 
-              }
-    
+
+        } else {
+
+
+            if (param === 'next') {
+
+                if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
+
+                    return (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 3)
+                }
+
+
+            }
+
+            else if (param === 'back') {
+
+                if (refBoxProdutos.current) {
+
+                    return (refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 3)
+                }
+
             }
 
 
         }
 
-       
+
 
     }
 
@@ -190,7 +196,7 @@ export default function Ajson() {
 
         consumirJson()
 
-    
+
 
     }, [])
 
@@ -222,9 +228,6 @@ export default function Ajson() {
     }, [input])
 
 
-
-   
-    
 
 
     return (
@@ -461,65 +464,65 @@ export default function Ajson() {
 
                 <h1 className={estiloJson.hTit}>Navegue por Departamentos :</h1>
 
-            
 
-                        <Swiper
 
-                            className={estiloJson.boxPaiSwiper}
-                            modules={[Navigation, Pagination, Autoplay]}
-                            slidesPerView={8}            
-                            spaceBetween={0}
-                            simulateTouch={true}
-                            grabCursor={true}
-                            
-                            breakpoints={
-                                
-                                {
-                                    100:{slidesPerView:1},
-                                    500:{slidesPerView:3},
-                                    600:{slidesPerView:4},
+                <Swiper
 
-                                    900:{slidesPerView:6},
+                    className={estiloJson.boxPaiSwiper}
+                    modules={[Navigation, Pagination, Autoplay]}
+                    slidesPerView={8}
+                    spaceBetween={0}
+                    simulateTouch={true}
+                    grabCursor={true}
 
-                                    1024:{slidesPerView:8}
-                                }
-                                    
-                            }
-                                
-                            
-                        >
-                            
-                            
-                        
-                            {
-                                depart.map((depart , index) => {
-                                    return (
+                    breakpoints={
 
-                                        <SwiperSlide key={index} className={estiloJson.boxSwiper}>
-                                            <div className={estiloJson.boxCardDep}>
-                                                <div className={estiloJson.boxDepIcon}>
-                                                    <FontAwesomeIcon className={estiloJson.iconDep} icon={icons[depart.icon]} />
-                                                </div>
-                                                <h3>{depart.name}</h3>
-                                            </div>
-                                        </SwiperSlide>
+                        {
+                            100: { slidesPerView: 1 },
+                            500: { slidesPerView: 3 },
+                            600: { slidesPerView: 4 },
 
-                                    )
-                                })
-                            }
+                            900: { slidesPerView: 6 },
+
+                            1024: { slidesPerView: 8 }
+                        }
+
+                    }
+
+
+                >
 
 
 
-                        </Swiper>
-                   
+                    {
+                        depart.map((depart, index) => {
+                            return (
 
+                                <SwiperSlide key={index} className={estiloJson.boxSwiper}>
+                                    <div className={estiloJson.boxCardDep}>
+                                        <div className={estiloJson.boxDepIcon}>
+                                            <FontAwesomeIcon className={estiloJson.iconDep} icon={icons[depart.icon]} />
+                                        </div>
+                                        <h3>{depart.name}</h3>
+                                    </div>
+                                </SwiperSlide>
+
+                            )
+                        })
+                    }
+
+
+
+                </Swiper>
 
 
 
 
 
 
-                
+
+
+
 
 
             </section>
@@ -529,41 +532,41 @@ export default function Ajson() {
 
                 <div className={`${estiloJson.boxBtnPrevNext} ${condButton}  `} >
 
-                            <FontAwesomeIcon onClick={()=> actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight}/>
-                            <FontAwesomeIcon onClick={()=> actionButton('back') } style={{transform:'rotate(180deg)'}} className={estiloJson.iconPrevNext}  icon={faChevronRight}/>
-                </div>    
+                    <FontAwesomeIcon onClick={() => actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight} />
+                    <FontAwesomeIcon onClick={() => actionButton('back')} style={{ transform: 'rotate(180deg)' }} className={estiloJson.iconPrevNext} icon={faChevronRight} />
+                </div>
 
                 <section ref={refBoxProdutos} className={estiloJson.boxPromocoes}>
-                
+
                     {
                         produtos.map((produtos, index) => {
 
                             return (
 
                                 <div ref={refProdutos} key={index} className={estiloJson.produtos}>
-                                            {
-                                                produtos.images.length > 0 ? <Image className={estiloJson.iconProd} width={200} height={200} alt={produtos.name} src={produtos.images[0]} /> : <Image className={estiloJson.iconProd} width={200} height={20} src={produtos.images} />
-                                            }
-                                            <div className={estiloJson.boxTx}>
-                                                {
-                                                    produtos.promotionalPrice === null ? <span>SEM ESTOQUE</span> : <span>{(((produtos.promotionalPrice - produtos.price) / produtos.promotionalPrice) * 100).toFixed(0)} % </span>
-                                                }
-                                                <p>{produtos.name}</p>
-                                                <div className={estiloJson.boxStar}>
-                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                                    <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
-                                                </div>
-                                                <p> R$ {produtos.price}</p>
-                                                <p> R$ {produtos.promotionalPrice}</p>
-                                                <p>{produtos.quantilyInStock}</p>
-                                                <p>12x de {(produtos.price / 12).toFixed(2)} sem juros</p>
-                                            </div>
-                                            <div className={estiloJson.boxComprar}>
-                                                <button>comprar</button>
-                                            </div>
+                                    {
+                                        produtos.images.length > 0 ? <Image className={estiloJson.iconProd} width={200} height={200} alt={produtos.name} src={produtos.images[0]} /> : <Image className={estiloJson.iconProd} width={200} height={20} src={produtos.images} />
+                                    }
+                                    <div className={estiloJson.boxTx}>
+                                        {
+                                            produtos.promotionalPrice === null ? <span>SEM ESTOQUE</span> : <span>{(((produtos.promotionalPrice - produtos.price) / produtos.promotionalPrice) * 100).toFixed(0)} % </span>
+                                        }
+                                        <p>{produtos.name}</p>
+                                        <div className={estiloJson.boxStar}>
+                                            <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                            <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                            <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                            <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                            <FontAwesomeIcon className={estiloJson.star} icon={faStar} />
+                                        </div>
+                                        <p> R$ {produtos.price}</p>
+                                        <p> R$ {produtos.promotionalPrice}</p>
+                                        <p>{produtos.quantilyInStock}</p>
+                                        <p>12x de {(produtos.price / 12).toFixed(2)} sem juros</p>
+                                    </div>
+                                    <div className={estiloJson.boxComprar}>
+                                        <button>comprar</button>
+                                    </div>
                                 </div>
                             )
                         })
@@ -572,21 +575,148 @@ export default function Ajson() {
             </section>
 
 
+
+
+
             <section className={estiloJson.boxPaiMarcas}>
 
                 <h1>Navegue pelas Marcas:</h1>
 
+
+
+
                 <section className={estiloJson.boxMarcas}>
+
+
+
+
+                    <Swiper
+
+
+                       
+                        spaceBetween={20}
+                        modules={[Autoplay]}
+                        autoplay={{ delay: 0 }}
+                        speed={1500}
+                        loop={true}
+                        breakpoints={
+                            
+                            {
+                                1024:{slidesPerView:6},
+                                960:{slidesPerView:4},
+                                600:{slidesPerView:3},
+                                500:{slidesPerView:2}
+                                
+
+                            }
+
+                    
+                    }
+
+
+                    >
+
+
+
+
+
+
+                        {
+                            dados.map((dados, index) => {
+                                return (
+
+
+                                    <SwiperSlide key={index} >
+
+
+                                        <div className={estiloJson.moldura}>
+                                            <Image alt={dados.name} className={estiloJson.iconMarcas} width={100} height={100} src={dados.logo} />
+                                        </div>
+
+                                    </SwiperSlide>
+
+
+
+
+                                )
+                            })
+                        }
+
+                    </Swiper>
+
+
+
+
+                </section>
+
+
+
+
+            </section>
+
+            <section className={estiloJson.boxPaiCupons}>
+
+                <div className={estiloJson.boxCupons}>
+
+                        {
+                            cupom.map((cupom , index)=>{
+
+                                return(
+
+                                    <div key={index} className={estiloJson.moldCupom} style={{backgroundImage:`url(${cupom.image})`}}>
+                                        
+                                        <div className={estiloJson.boxDesconto}>
+                                            <p>{cupom.des} OFF </p>
+                                        </div>
+                                       
+                                        <div className={estiloJson.moldTx}>
+                                            <h2>{cupom.title}</h2>
+                                            <p>*use o cupom {cupom.cup}</p>
+
+                                        </div>
+
+                                    </div>
+                        
+
+                                )
+
+                            })
+                        }
+
+
+                </div>
+
+
+
+            </section>
+
+
+            <section className={estiloJson.boxPorDentro}>
+
+                <h1>Fique por dentro</h1>
+
+                <div className={estiloJson.boxPaiPorDentro}>
+
                     {
-                        dados.map((dados, index) => {
+
+                        blog.map((blog, index) => {
+
                             return (
-                                <div key={index} className={estiloJson.moldura}>
-                                    <Image alt={dados.name} className={estiloJson.iconMarcas} width={100} height={100} src={dados.logo} />
+
+                                <div key={index} className={estiloJson.molduraPorDentro}>
+
+                                    <Image className={estiloJson.iconDentro} alt={blog.title} width={400} height={200} src={blog.image} />
+                                    <p>{blog.title}</p>
+                                    <button>Saiba Mais</button>
+
                                 </div>
+
                             )
                         })
+
                     }
-                </section>
+
+                </div>
 
             </section>
 

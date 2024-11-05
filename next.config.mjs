@@ -34,7 +34,9 @@ const nextConfig = {
       'leaoferramentas.agilecdn.com.br',
       'static.felap.com.br',
       't74920.vteximg.com.br',
-      'd365e82sgxmduv.cloudfront.net'
+      'd365e82sgxmduv.cloudfront.net',
+      'images.unsplash.com',
+      'img.freepik.com'
 
       
 
