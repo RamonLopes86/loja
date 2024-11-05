@@ -2,7 +2,7 @@ import estiloJson from './json.module.css';
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight , faEnvelope , faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import seta from '../public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -262,7 +262,7 @@ export default function Ajson() {
                     <section className={estiloJson.boxConteudo}>
 
                         <div className={estiloJson.boxLogo}>
-                            <h1>Moura</h1>
+                            <h1>Ramon</h1>
                             <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
                         </div>
                         <form onSubmit={pesquisar}>
@@ -737,6 +737,31 @@ export default function Ajson() {
                     }
 
                 </div>
+
+            </section>
+
+
+            <section className={estiloJson.boxSend}>
+
+                    <aside className={estiloJson.boxTxSend}>
+
+                        <h3>Cadastre-se e, nossa NewSletter</h3>
+                        <p>Fique por dentro das promoções e novidades</p>
+
+                    </aside>
+
+                    <aside className={estiloJson.formSend}>
+
+                        <div className={estiloJson.boxInputSend}>
+
+                             <FontAwesomeIcon className={estiloJson.iconSend} icon={faEnvelope}/>   
+                            <input autoComplete='off' placeholder='Seu melhor e-mail' type="email" name="mail" id="idmail" />
+
+                        </div>
+
+                        <button> <FontAwesomeIcon className={estiloJson.iconPaper} icon={faPaperPlane}/>   Cadastrar</button>
+
+                    </aside>
 
             </section>
 

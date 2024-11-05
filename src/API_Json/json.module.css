@@ -3,6 +3,7 @@
 
     min-height: 800px;
     overflow: hidden;
+
     
 }
 
@@ -113,6 +114,14 @@
 .boxJson .boxPaiTop{
 
     background-color:#34219F ;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    
+   
+    z-index: 1;
 
 }
 
@@ -694,7 +703,8 @@
 
     color: #FF3E41;
     font-size: 2.5rem;
-    
+    position: relative;
+    top: 3px;
 }
    
 
@@ -828,37 +838,13 @@
    justify-content: flex-start;
    gap: 20px;
    max-width: 1250px;
-    overflow-x: scroll;
+    overflow: hidden;
    margin: 0px auto;
    padding: 20px 10px;
    scroll-behavior: smooth;
 }
 
-.boxPromocoesSemFlex::-webkit-scrollbar{
 
-    height: 10px;
-    background-color: rgba(128, 128, 128, 0.548);
-    border-radius: 10px;
-}
-
-.boxPromocoesSemFlex::-webkit-scrollbar-thumb{
-
-    background-color:#34219F;
-    border-radius: 10px;
-    
-}
-
-.boxPromocoesSemFlex::-webkit-scrollbar-thumb:hover{
-
-    cursor: grab;
-    
-}
-
-.boxPromocoesSemFlex::-webkit-scrollbar-thumb:active{
-
-    cursor: grabbing;
-    
-}
     
 
 
@@ -1389,6 +1375,114 @@
    
 
     
+
+}
+
+
+.boxJson .boxSend{
+
+    background-color: #5F5F5F;
+    padding: 40px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+    margin-bottom: 80px; /*remover*/
+
+
+    & .boxTxSend{
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: white;
+
+        & h3{
+
+            font-size: 1.2rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-transform: uppercase;
+        }
+
+        & p{
+
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    }
+
+
+
+    & .formSend{
+
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+
+        & .boxInputSend{
+
+            position: relative;
+
+        }
+
+        & .iconSend{
+
+            color: rgb(184, 179, 179);
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left:15px;
+            top: 50%;
+            transform: translate(0% , -50%);
+        }
+
+        & input{
+
+            padding: 15px;
+            width: 350px;
+            border-radius: 7px;
+            border: none;
+            text-indent: 32px;
+            outline: none;
+        }
+
+        & input::placeholder{
+
+            text-indent: 32px;
+        }
+
+        
+
+        
+
+
+        & button{
+
+            padding: 15px;
+            border: none;
+            border-radius: 7px;
+            width: 150px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            color: gray;
+            cursor: pointer;
+
+
+            & iconpaper{
+
+                width: 10px;
+                height: 10px;
+            }
+        }
+            
+    }
 
 }
 

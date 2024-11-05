@@ -12,6 +12,20 @@
 .swiper-wrapper{
 
   transition-timing-function: linear !important;
-
-
 }
+
+
+
+::-webkit-scrollbar{
+
+  background-color: rgba(128, 128, 128, 0.658);
+  width: 10px;
+  
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius: 10px;
+    background-color: #FF3E41;
+}
+
