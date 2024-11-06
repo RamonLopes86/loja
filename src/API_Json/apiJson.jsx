@@ -10,6 +10,9 @@ import 'Swiper/css'
 import 'Swiper/css/navigation'
 import 'Swiper/css/pagination'
 import Image from 'next/image';
+import alicate from '../public/alicate.jpg'
+import furadeira from '../public/furadeira.jpg'
+import chuveiro from '../public/chuveiro.jpg'
 
 
 
@@ -43,6 +46,8 @@ export default function Ajson() {
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
 
+    
+
 
 
     async function consumirJson() {
@@ -59,7 +64,7 @@ export default function Ajson() {
 
             setCupom(response.data.cupons)
 
-           
+         
             
 
         } catch (error) {
@@ -106,6 +111,7 @@ export default function Ajson() {
 
                 alert('digite algo')
                 setAnimaBtn(estiloJson.botaoLiga)
+                setDepPesq(boxPromocoesSemFlex)
             }
 
            
@@ -259,14 +265,23 @@ export default function Ajson() {
 
             <section className={estiloJson.boxPaiTop}>
                 <div className={estiloJson.Top}>
+
                     <section className={estiloJson.boxConteudo}>
 
                         <div className={estiloJson.boxLogo}>
-                            <h1>Ramon</h1>
-                            <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
+
+                           
+                            <FontAwesomeIcon className={estiloJson.iconLogoHam} icon={faBars}/>
+                           
+
+                            <div className={estiloJson.boxLogoTx}>
+                                <h1>Ramon</h1>
+                                <FontAwesomeIcon  className={estiloJson.house} icon={faHouse} />
+                            </div>
                         </div>
+
                         <form onSubmit={pesquisar}>
-                            <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo pruduto' type="text" name="pesquisa" id="idpesquisa" />
+                            <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo produto' type="text" name="pesquisa" id="idpesquisa" />
                             <button type='submit'><FontAwesomeIcon className={estiloJson.iconPesq} icon={faMagnifyingGlass} /> </button>
                         </form>
                         <div className={estiloJson.boxLocaliza}>
@@ -471,11 +486,67 @@ export default function Ajson() {
 
                         </nav>
 
-
-
                     </section>
 
+
+                    <section  className={estiloJson.boxInputEscondido}>
+                    <form onSubmit={pesquisar}>
+                            <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo produto' type="text" name="pesquisa" id="idpesquisa" />
+                            <button type='submit'><FontAwesomeIcon className={estiloJson.iconPesq} icon={faMagnifyingGlass} /> </button>
+                        </form>
+                    </section>
+
+
+
                 </div>
+
+            </section>
+
+            <section className={estiloJson.slider}>
+
+               
+
+                <div className={estiloJson.slides}>
+
+
+                    <input type="radio" name="radio" id="radio1"  />
+                    <input type="radio" name="radio" id="radio2" />
+                    <input type="radio" name="radio" id="radio3" /> 
+
+                    
+                   
+
+                        <div className={estiloJson.slide}>
+                            <Image className={estiloJson.imgSlide} alt='imagens' src={furadeira}/>
+                        </div>
+
+                        <div className={estiloJson.slide}>
+                            <Image className={estiloJson.imgSlide} alt='imagens' src={chuveiro}/>
+                        </div>
+
+                        <div className={estiloJson.slide}>
+                            <Image className={estiloJson.imgSlide} alt='imagens' src={alicate}/> 
+                        </div>               
+
+                  
+
+
+                    <div className={estiloJson.navigation}>
+
+                        <label className={estiloJson.firstLabel} htmlFor="radio1"></label>
+                        <label htmlFor="radio2"></label>
+                        <label htmlFor="radio3"></label>
+
+                    </div>
+
+                     
+                     
+
+                </div>                     
+                        
+                                        
+              
+
 
             </section>
 
