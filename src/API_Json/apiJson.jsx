@@ -2,7 +2,7 @@ import estiloJson from './json.module.css';
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight , faEnvelope , faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import seta from '../public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -13,7 +13,14 @@ import Image from 'next/image';
 import alicate from '../public/alicate.jpg'
 import furadeira from '../public/furadeira.jpg'
 import chuveiro from '../public/chuveiro.jpg'
-
+import insta from '../public/insta.png'
+import tik from '../public/tik.png'
+import you from '../public/yt.png'
+import lk from '../public/lkd.png'
+import elo from '../public/elo.png'
+import visa from '../public/visa.png'
+import pix from '../public/pix.png'
+import master from '../public/master.png'
 
 
 
@@ -33,20 +40,27 @@ export default function Ajson() {
         faSignHanging: faSignHanging
     }
 
+    const redes = [insta, lk, you , tik , elo , visa , pix, master]
+
+    
+
+
+
     const [dados, setDados] = useState([])
     const [produtos, setProdutos] = useState([])
     const [input, setInput] = useState('')
     const [depart, setDep] = useState([])
     const [subDepartMatEle, setSubDepartMatEle] = useState([])
-    const[depPesq , setDepPesq] = useState(estiloJson.boxPromocoesSemFlex)
-    const [animabtn , setAnimaBtn] = useState(estiloJson.botaoLiga)
+    const [depPesq, setDepPesq] = useState(estiloJson.boxPromocoesSemFlex)
+    const [animabtn, setAnimaBtn] = useState(estiloJson.botaoLiga)
     const [blog, setBlog] = useState([])
-    const [cupom , setCupom] = useState([])
+    const [cupom, setCupom] = useState([])
+    
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
 
-    
+
 
 
 
@@ -64,8 +78,9 @@ export default function Ajson() {
 
             setCupom(response.data.cupons)
 
-         
-            
+
+
+
 
         } catch (error) {
 
@@ -87,7 +102,7 @@ export default function Ajson() {
 
         setDepPesq(estiloJson.boxPromocoesSemFlex)
 
-        
+
 
     }
 
@@ -104,8 +119,8 @@ export default function Ajson() {
 
             const responsePesquisa = await axios.get(`http://localhost:8080/consulta?nome=${input}`)
 
-            
-           
+
+
 
             if (input.length === 0) {
 
@@ -114,14 +129,14 @@ export default function Ajson() {
                 setDepPesq(boxPromocoesSemFlex)
             }
 
-           
-            
+
+
 
             if (responsePesquisa.data.length > 0) {
 
                 setProdutos(responsePesquisa.data)
                 window.history.pushState({}, '', `?nome=${input}`)
-                
+
                 setDepPesq(estiloJson.boxPromocoesFlex)
                 setAnimaBtn(estiloJson.botaoDesliga)
 
@@ -148,34 +163,34 @@ export default function Ajson() {
     function actionButton(param) {
 
 
-      
+
 
         if (window.innerWidth <= 1300) {
 
-          
+
 
             if (param === 'next') {
 
-               
+
 
                 if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
 
                     return refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 1.3
                 }
-              
+
 
 
             }
 
             else if (param === 'back') {
 
-            
+
 
                 if (refBoxProdutos.current) {
 
                     return refBoxProdutos.current.scrollLeft -= refProdutos.current.offsetWidth * 1.3
                 }
-            
+
 
             }
 
@@ -184,16 +199,16 @@ export default function Ajson() {
 
             if (param === 'next') {
 
-             
 
-                    if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
 
-                        return (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 3 )
-                    }
-    
-                        
-                        
-               
+                if (refProdutos.current.scrollLeft + refProdutos.current.offsetWidth <= refBoxProdutos.current.scrollWidth) {
+
+                    return (refBoxProdutos.current.scrollLeft += refProdutos.current.offsetWidth * 3)
+                }
+
+
+
+
 
 
             }
@@ -222,7 +237,7 @@ export default function Ajson() {
 
         consumirJson()
 
-      
+
 
     }, [])
 
@@ -237,7 +252,7 @@ export default function Ajson() {
 
                 consumirProdutos()
                 setAnimaBtn(estiloJson.botaoLiga)
-                
+
 
                 window.history.pushState({}, '', window.location.pathname);
             } else {
@@ -270,13 +285,13 @@ export default function Ajson() {
 
                         <div className={estiloJson.boxLogo}>
 
-                           
-                            <FontAwesomeIcon className={estiloJson.iconLogoHam} icon={faBars}/>
-                           
+
+                            <FontAwesomeIcon className={estiloJson.iconLogoHam} icon={faBars} />
+
 
                             <div className={estiloJson.boxLogoTx}>
                                 <h1>Ramon</h1>
-                                <FontAwesomeIcon  className={estiloJson.house} icon={faHouse} />
+                                <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
                             </div>
                         </div>
 
@@ -489,8 +504,8 @@ export default function Ajson() {
                     </section>
 
 
-                    <section  className={estiloJson.boxInputEscondido}>
-                    <form onSubmit={pesquisar}>
+                    <section className={estiloJson.boxInputEscondido}>
+                        <form onSubmit={pesquisar}>
                             <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo produto' type="text" name="pesquisa" id="idpesquisa" />
                             <button type='submit'><FontAwesomeIcon className={estiloJson.iconPesq} icon={faMagnifyingGlass} /> </button>
                         </form>
@@ -504,31 +519,31 @@ export default function Ajson() {
 
             <section className={estiloJson.slider}>
 
-               
+
 
                 <div className={estiloJson.slides}>
 
 
-                    <input type="radio" name="radio" id="radio1"  />
+                    <input type="radio" name="radio" id="radio1" />
                     <input type="radio" name="radio" id="radio2" />
-                    <input type="radio" name="radio" id="radio3" /> 
+                    <input type="radio" name="radio" id="radio3" />
 
-                    
-                   
 
-                        <div className={estiloJson.slide}>
-                            <Image className={estiloJson.imgSlide} alt='imagens' src={furadeira}/>
-                        </div>
 
-                        <div className={estiloJson.slide}>
-                            <Image className={estiloJson.imgSlide} alt='imagens' src={chuveiro}/>
-                        </div>
 
-                        <div className={estiloJson.slide}>
-                            <Image className={estiloJson.imgSlide} alt='imagens' src={alicate}/> 
-                        </div>               
+                    <div className={estiloJson.slide}>
+                        <Image className={estiloJson.imgSlide} alt='imagens' src={furadeira} />
+                    </div>
 
-                  
+                    <div className={estiloJson.slide}>
+                        <Image className={estiloJson.imgSlide} alt='imagens' src={chuveiro} />
+                    </div>
+
+                    <div className={estiloJson.slide}>
+                        <Image className={estiloJson.imgSlide} alt='imagens' src={alicate} />
+                    </div>
+
+
 
 
                     <div className={estiloJson.navigation}>
@@ -539,13 +554,13 @@ export default function Ajson() {
 
                     </div>
 
-                     
-                     
 
-                </div>                     
-                        
-                                        
-              
+
+
+                </div>
+
+
+
 
 
             </section>
@@ -623,7 +638,7 @@ export default function Ajson() {
 
                 <div className={`${estiloJson.boxBtnPrevNext} ${animabtn} `} >
 
-                    <FontAwesomeIcon onClick={() => actionButton('next')  } className={estiloJson.iconPrevNext} icon={faChevronRight} />
+                    <FontAwesomeIcon onClick={() => actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight} />
                     <FontAwesomeIcon onClick={() => actionButton('back')} style={{ transform: 'rotate(180deg)' }} className={estiloJson.iconPrevNext} icon={faChevronRight} />
                 </div>
 
@@ -684,25 +699,25 @@ export default function Ajson() {
                     <Swiper
 
 
-                       slidesPerView={8}
+                        slidesPerView={8}
                         spaceBetween={20}
                         modules={[Autoplay]}
                         autoplay={{ delay: 0 }}
                         speed={1500}
                         loop={true}
                         breakpoints={
-                            
+
                             {
-                                1024:{slidesPerView:6},
-                                960:{slidesPerView:4},
-                                600:{slidesPerView:3},
-                                500:{slidesPerView:2}
-                                
+                                1024: { slidesPerView: 6 },
+                                960: { slidesPerView: 4 },
+                                600: { slidesPerView: 3 },
+                                500: { slidesPerView: 2 }
+
 
                             }
 
-                    
-                    }
+
+                        }
 
 
                     >
@@ -749,30 +764,30 @@ export default function Ajson() {
 
                 <div className={estiloJson.boxCupons}>
 
-                        {
-                            cupom.map((cupom , index)=>{
+                    {
+                        cupom.map((cupom, index) => {
 
-                                return(
+                            return (
 
-                                    <div key={index} className={estiloJson.moldCupom} style={{backgroundImage:`url(${cupom.image})`}}>
-                                        
-                                        <div className={estiloJson.boxDesconto}>
-                                            <p>{cupom.des} OFF </p>
-                                        </div>
-                                       
-                                        <div className={estiloJson.moldTx}>
-                                            <h2>{cupom.title}</h2>
-                                            <p>*use o cupom {cupom.cup}</p>
+                                <div key={index} className={estiloJson.moldCupom} style={{ backgroundImage: `url(${cupom.image})` }}>
 
-                                        </div>
+                                    <div className={estiloJson.boxDesconto}>
+                                        <p>{cupom.des} OFF </p>
+                                    </div>
+
+                                    <div className={estiloJson.moldTx}>
+                                        <h2>{cupom.title}</h2>
+                                        <p>*use o cupom {cupom.cup}</p>
 
                                     </div>
-                        
 
-                                )
+                                </div>
 
-                            })
-                        }
+
+                            )
+
+                        })
+                    }
 
 
                 </div>
@@ -814,25 +829,112 @@ export default function Ajson() {
 
             <section className={estiloJson.boxSend}>
 
-                    <aside className={estiloJson.boxTxSend}>
+                <aside className={estiloJson.boxTxSend}>
 
-                        <h3>Cadastre-se e, nossa NewSletter</h3>
-                        <p>Fique por dentro das promoções e novidades</p>
+                    <h3>Cadastre-se e, nossa NewSletter</h3>
+                    <p>Fique por dentro das promoções e novidades</p>
 
-                    </aside>
+                </aside>
 
-                    <aside className={estiloJson.formSend}>
+                <aside className={estiloJson.formSend}>
 
-                        <div className={estiloJson.boxInputSend}>
+                    <div className={estiloJson.boxInputSend}>
 
-                             <FontAwesomeIcon className={estiloJson.iconSend} icon={faEnvelope}/>   
-                            <input autoComplete='off' placeholder='Seu melhor e-mail' type="email" name="mail" id="idmail" />
+                        <FontAwesomeIcon className={estiloJson.iconSend} icon={faEnvelope} />
+                        <input autoComplete='off' placeholder='Seu melhor e-mail' type="email" name="mail" id="idmail" />
 
+                    </div>
+
+                    <button> <FontAwesomeIcon className={estiloJson.iconPaper} icon={faPaperPlane} />   Cadastrar</button>
+
+                </aside>
+
+            </section>
+
+
+            <section className={estiloJson.boxContatos}>
+
+                <section className={estiloJson.boxContatosTexto}>
+
+                    <section className={estiloJson.faleConosco}>
+                        
+                        <h3>Fale Conosco</h3>
+                        <ul>
+                            <li>Atendimento</li>
+                            <li>Acompanhe seu pedido</li>
+                            <li>Abra um chamado</li>
+                            <li>Envie um e-mail</li>
+                        </ul>
+                    </section>
+
+                    <section className={estiloJson.institucional}>
+                        <h3>Institucional</h3>
+                        <ul>
+                            <li>Trabalhe conosco</li>
+                            <li>Eventos</li>
+                            <li>Serviços</li>
+                            <li>Lojas físicas</li>
+                        </ul>
+                    </section>
+
+                    <section className={estiloJson.suporte}>
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li>Politicas de privacidade</li>
+                            <li>Politicas de entrega</li>
+                            <li>politiacs de troca e devolução</li>
+                            <li>politicas de pagamento</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section className={estiloJson.boxContatosPagamento}>
+
+                    <section className={estiloJson.boxFormasdePgt}>
+
+                        <h3>Pagamento</h3>
+
+                        <div className={estiloJson.iconsBandeiras}>
+                            {
+
+                                redes.map((redes , index)=> {
+
+                                    return(
+
+                                        <Image key={index} width={50} height={50} className={estiloJson.iconBandeiras} src={redes.src}/>
+                                    )
+                                }).splice(4,7)
+                            }
                         </div>
 
-                        <button> <FontAwesomeIcon className={estiloJson.iconPaper} icon={faPaperPlane}/>   Cadastrar</button>
+                    </section>
 
-                    </aside>
+                    <section className={estiloJson.boxredesSociais}>
+
+                        <h3>Redes Sociais</h3>
+
+                        <section className={estiloJson.boxIconsRedes}>
+
+                            {
+
+                                redes.map((redes , index)=>{
+
+                                    return(
+
+                                        <Image key={index} className={estiloJson.iconRedes} width={50} height={50} src={redes.src}/>
+                                    )
+
+                                }).splice(0 , 4)
+
+                            }
+
+                        </section>
+
+                    </section>
+
+                </section>
+
 
             </section>
 

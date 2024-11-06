@@ -8,6 +8,7 @@
     
 }
 
+
 .boxJson .boxPaiMarcas{
 
     padding: 80px 10px 20px 0px;
@@ -1161,8 +1162,8 @@
 
     max-width: 1300px;
     margin: 0px auto;
-   
-    padding: 40px 0px 80px 0px;
+    
+    padding: 40px 10px 80px 10px;
 
 
     & h1{
@@ -1182,7 +1183,7 @@
     gap: 30px;
     overflow-x: scroll;
     padding: 20px 0px;
-    
+   
 }
 
 .boxJson .boxPorDentro .boxPaiPorDentro::-webkit-scrollbar{
@@ -1215,7 +1216,7 @@
     
     
 
-    
+
 
 .boxJson .boxPorDentro .boxPaiPorDentro .molduraPorDentro{
     
@@ -1274,6 +1275,8 @@
 .boxJson .boxPaiCupons{
 
     padding: 40px 10px;
+    max-width: 1300px;
+    margin: 0px auto;
 }
 
 
@@ -1292,6 +1295,9 @@
     grid-template-columns: repeat(2 , minmax(300px , 650px));
     gap: 20px;
     place-content: center;
+   
+    
+
 
 }
     
@@ -1307,7 +1313,7 @@
         color: white;
         border-radius: 10px;
         position: relative;
-
+        
 
         
 
@@ -1365,6 +1371,7 @@
         position: absolute;
         top: 50%;
         transform: translate(-50% , -50%);
+        
 
     }
 
@@ -1393,9 +1400,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 200px;
-        margin-bottom: 80px; /*remover*/
-    
+        gap: 40px 200px;
+        width: 100%;
+        flex-wrap: wrap;
+       
     
         & .boxTxSend{
     
@@ -1403,7 +1411,8 @@
             flex-direction: column;
             gap: 10px;
             color: white;
-    
+            
+
             & h3{
     
                 font-size: 1.2rem;
@@ -1426,12 +1435,16 @@
             display: flex;
             flex-direction: row;
             gap: 10px;
-    
+            align-items: center;
+            justify-content: center;
+            width: 700px;
+           
     
             & .boxInputSend{
     
                 position: relative;
-    
+                width: 100%;
+                
             }
     
             & .iconSend{
@@ -1448,7 +1461,7 @@
             & input{
     
                 padding: 15px;
-                width: 350px;
+                width: 100%;
                 border-radius: 7px;
                 border: none;
                 text-indent: 32px;
@@ -1633,11 +1646,6 @@
 }
 
 
-
-
-
-
-
 .slider .slides input:nth-of-type(1):checked ~ .navigation > label:nth-of-type(1){
 
     background-color: rgb(255, 255, 255) ;
@@ -1656,6 +1664,123 @@
 }
 
 
+.boxJson .boxContatos {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+        
+    flex-wrap: wrap;
+    gap: 80px 20px;
+    width: 100%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.boxJson .boxContatos .boxContatosTexto{
+
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: 80px;
+    font-size: 1.2rem;
+    color: gray;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    & h3{
+
+        padding:20px 0px;
+    }
+   
+}
+    
+
+
+
+.boxJson .boxContatos .boxContatosTexto > section > ul{
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    & li{
+
+        font-size: 0.8rem;
+    }
+}
+
+
+.boxContatos .boxContatosPagamento{
+
+    /* display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start; */
+
+    display: grid;
+    grid-template-columns: repeat(1 , 1fr);
+    
+
+
+    & h3{
+
+        font-size: 1.5rem;
+
+    }
+
+}
+
+.boxContatos .boxContatosPagamento .boxFormasdePgt{
+
+
+
+    display: flex;
+    flex-direction: column;
+    
+    
+
+   & h3{
+        font-size: 1.2rem;
+        color: gray;
+        
+   }
+
+  
+    
+}
+
+
+.boxContatos .boxContatosPagamento .boxredesSociais{
+
+    display: flex;
+    flex-direction: column;
+    
+
+    & h3{
+
+        font-size: 1.2rem;
+        color: gray;
+        
+    }
+
+
+
+    & .boxIconsRedes{
+
+        display: flex;
+        flex-direction:row;
+        gap: 25px;
+
+        & .iconRedes{
+
+            clip-path: circle();
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+  
 
 
 @media screen and (max-width: 650px) {
@@ -1676,63 +1801,20 @@
 }
 
 
-/* 
-@keyframes move {
 
+@media screen and (max-width:500px) {
 
-    0%{
+  .boxJson .boxSend .formSend{
 
-        transform: translateX(0);
-        
+        flex-direction: column;
+
+        & button{
+
+            width: 100%;
+        }
     }
-    100%{
-
-        transform: translateX(-200%);
-        
-    }
-    
-
-   
-    
-} */
-
-
-
-
-
-
-     
-
-
-
-    
-   
-    
-   
-   
-
-
-    
-     
-
-
-   
-
-    
-
-
-
-
-
-@keyframes moveCarousel {
 
 }
-  
-   
-      
-
-
-
 
 @media screen and (max-width:480px) {
 
