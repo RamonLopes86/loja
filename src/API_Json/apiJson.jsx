@@ -4,25 +4,25 @@ import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
-import seta from '../public/seta.png'
+import seta from '/public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'Swiper/css'
 import 'Swiper/css/navigation'
 import 'Swiper/css/pagination'
 import Image from 'next/image';
-import alicate from '../public/alicate.jpg'
-import furadeira from '../public/furadeira.jpg'
-import chuveiro from '../public/chuveiro.jpg'
-import insta from '../public/insta.png'
-import tik from '../public/tik.png'
-import you from '../public/yt.png'
-import lk from '../public/lkd.png'
-import elo from '../public/elo.png'
-import visa from '../public/visa.png'
-import pix from '../public/pix.png'
-import master from '../public/master.png'
-import qr from '../public/qr.png'
+import alicate from '/public/alicate.jpg'
+import furadeira from '/public/furadeira.jpg'
+import chuveiro from '/public/chuveiro.jpg'
+import insta from '/public/insta.png'
+import tik from '/public/tik.png'
+import you from '/public/yt.png'
+import lk from '/public/lkd.png'
+import elo from '/public/elo.png'
+import visa from '/public/visa.png'
+import pix from '/public/pix.png'
+import master from '/public/master.png'
+import qr from '/public/qr.png'
 
 
 
