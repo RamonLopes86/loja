@@ -256,6 +256,11 @@ export default function Ajson() {
 
         elementoTopo.scrollIntoView({ behavior: 'smooth' })
     }
+    
+
+    
+    
+   
 
 
     useEffect(() => {
@@ -263,6 +268,35 @@ export default function Ajson() {
         consumirJson()
 
 
+        let count = 1
+
+       
+
+        function NextImage(){
+
+            count ++
+
+            if(count >=4){
+    
+                count = 1
+
+            }
+                
+    
+                
+            document.getElementById('radio' + count).checked = true
+            
+    
+        }
+      
+    const intervalo =   setInterval(()=>{
+
+            NextImage()
+
+       },5000)
+       
+
+       return () => clearInterval(intervalo)
 
     }, [])
 
@@ -548,7 +582,7 @@ export default function Ajson() {
 
 
 
-                <div className={estiloJson.slides}>
+                <div id='teste'  className={estiloJson.slides}>
 
 
                     <input type="radio" name="radio" id="radio1" />
@@ -558,15 +592,15 @@ export default function Ajson() {
 
 
 
-                    <div className={estiloJson.slide}>
+                    <div id='sld1'  className={estiloJson.slide}>
                         <Image className={estiloJson.imgSlide} alt='imagens' src={furadeira} />
                     </div>
 
-                    <div className={estiloJson.slide}>
+                    <div id='sld2' className={estiloJson.slide}>
                         <Image className={estiloJson.imgSlide} alt='imagens' src={chuveiro} />
                     </div>
 
-                    <div className={estiloJson.slide}>
+                    <div id='sld3' className={estiloJson.slide}>
                         <Image className={estiloJson.imgSlide} alt='imagens' src={alicate} />
                     </div>
 
