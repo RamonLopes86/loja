@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp , faX } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp , faX , faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import seta from '/public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -23,6 +23,7 @@ import visa from '/public/visa.png'
 import pix from '/public/pix.png'
 import master from '/public/master.png'
 import qr from '/public/qr.png'
+
 
 
 
@@ -61,6 +62,7 @@ export default function Ajson() {
     const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
     const [cond , setCond] = useState(false)
+    const [condSub , setCondSub] = useState(false)
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
@@ -112,6 +114,7 @@ export default function Ajson() {
         setDepPesq(estiloJson.boxPromocoesSemFlex)
 
 
+       
 
     }
 
@@ -350,6 +353,7 @@ export default function Ajson() {
             if(window.innerWidth >=870){
 
                 setCond(false)
+                setCondSub(false)
             }
 
         }
@@ -358,7 +362,9 @@ export default function Ajson() {
 
 
         return()=> window.removeEventListener('resize' ,recolheMenuEscondido)
-    })
+    },[])
+
+
     
     return (
 
@@ -1162,15 +1168,59 @@ export default function Ajson() {
                 </div>
 
                 <div className={estiloJson.listaDepEscondidas}>
-                    {
-                        depart.map((depart , index)=>{
-                            return(
-                    
-                                    <span key={index}>{depart.name} <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> </span>
-                    
-                            )
-                        })
-                    }
+                        <ul>
+                            <li onClick={()=> setCondSub(true)}>Departamentos <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> </li>
+                            <li>Promoções do dia <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
+                            <li>Cupons <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
+                            <li>Serviços <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
+                            <li>Dicas <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
+                            <li>Suporte <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
+                        </ul>
+                </div>
+
+                <div className={`${estiloJson.subMenuEscondido} ${condSub ? estiloJson.animaSubOn : estiloJson.animaSubOff}`}>
+
+                  
+                        <h3 onClick={()=> setCondSub(false)}  className={estiloJson.boxTxSubmenuEscondido}> <FontAwesomeIcon className={estiloJson.setaCabo} icon={faArrowRight}/>Voltar</h3> 
+                           
+                  
+
+                        <ul className={estiloJson.listaSubmenuEscondido}>
+                            {
+                            depart.map((depart , index)=>{
+
+                                return(
+
+                                    <li key={index}>{depart.name} <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> 
+
+                                            {/* caso queira mostrar as categorias é so descomentar e estilizar */}
+                                            {/* <li>
+
+                                                {
+                                                    depart.categories.map((dep)=>{
+
+                                                        return(
+
+                                                            dep.name
+                                                        )
+                                                    })
+                                                }
+
+
+                                            </li> */}
+
+                                     </li>
+                                            
+                                    
+                                    
+
+                                    
+                                )
+                            })
+
+                            }
+                        </ul>
+
                 </div>
                     
 
