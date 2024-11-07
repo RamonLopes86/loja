@@ -1,8 +1,9 @@
 import estiloJson from './json.module.css';
 import axios from 'axios';
+import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 import seta from '../public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -41,9 +42,9 @@ export default function Ajson() {
         faSignHanging: faSignHanging
     }
 
-    const redes = [insta,  lk, you , tik , elo , visa , pix, master , qr]
+    const redes = [insta, lk, you, tik, elo, visa, pix, master, qr]
 
-    
+
 
 
 
@@ -57,14 +58,14 @@ export default function Ajson() {
     const [blog, setBlog] = useState([])
     const [cupom, setCupom] = useState([])
 
-    const [mostraMenu , setMostraMenu] = useState(estiloJson.escondeTexto)
-    
-    const [animaSeta , setAnimaSeta] = useState(estiloJson.animaSetaDesliga)
+    const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
-    const [cond , setCond] = useState(true)
+
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
+
+
 
 
 
@@ -145,6 +146,10 @@ export default function Ajson() {
 
                 setDepPesq(estiloJson.boxPromocoesFlex)
                 setAnimaBtn(estiloJson.botaoDesliga)
+
+                scrollToPoint()
+
+                setSetaPesquisaMais(estiloJson.pesqMaisLiga)
 
             } else {
 
@@ -236,44 +241,21 @@ export default function Ajson() {
     }
 
 
-    function menuEscondido(valor){
 
+    function scrollToPoint() {
 
-       if(valor === 'falaconosco'){
+        const elemento = window.document.getElementById('idref')
 
-        if(cond === true){
-
-            setMostraMenu(estiloJson.mostraTexto )
-            setCond(false)
-            setAnimaSeta(estiloJson.animaSetaLiga)
-
-        }else{
-
-            setMostraMenu(estiloJson.escondeTexto)
-            setAnimaSeta(estiloJson.animaSetaDesliga)
-            setCond(true)
-        }
-
-       }else if(valor === 'institucional'){
-
-        if(cond === true){
-
-            setMostraMenu(estiloJson.mostraTexto )
-            setCond(false)
-            setAnimaSeta(estiloJson.animaSetaLiga)
-
-        }else{
-
-            setMostraMenu(estiloJson.escondeTexto)
-            setAnimaSeta(estiloJson.animaSetaDesliga)
-            setCond(true)
-        }
-       }
-
-        
+        elemento.scrollIntoView({ behavior: 'smooth' })
 
     }
-            
+
+    function scrollToPointTopo() {
+
+        const elementoTopo = window.document.getElementById('refTop')
+
+        elementoTopo.scrollIntoView({ behavior: 'smooth' })
+    }
 
 
     useEffect(() => {
@@ -295,6 +277,7 @@ export default function Ajson() {
 
                 consumirProdutos()
                 setAnimaBtn(estiloJson.botaoLiga)
+                setSetaPesquisaMais(estiloJson.pesqMaisDesliga)
 
 
                 window.history.pushState({}, '', window.location.pathname);
@@ -318,10 +301,11 @@ export default function Ajson() {
 
         <section className={estiloJson.boxJson}>
 
+            <Link className={estiloJson.btnUp} href={'#refTop'}><FontAwesomeIcon className={estiloJson.btnUp} width={100} height={100} icon={faAnglesUp} /></Link>
 
 
+            <section id='refTop' className={estiloJson.boxPaiTop}>
 
-            <section className={estiloJson.boxPaiTop}>
                 <div className={estiloJson.Top}>
 
                     <section className={estiloJson.boxConteudo}>
@@ -529,11 +513,11 @@ export default function Ajson() {
 
                                 </li>
 
-                                <li>Promoções do Dia</li>
-                                <li>Cupons</li>
-                                <li>Serviços</li>
+                                <Link href={'#idref'}><li>Promoções do Dia</li></Link>
+                                <Link href={'#idcupom'} ><li>Cupons</li></Link>
+                                <Link href={'#iddentro'}><li>Serviços</li></Link>
                                 <li>Dicas</li>
-                                <li>Suporte</li>
+                                <Link href={'#idcontato'}><li>Suporte</li></Link>
 
                             </ul>
 
@@ -679,6 +663,13 @@ export default function Ajson() {
 
             <section className={`${estiloJson.boxBotoes} `}>
 
+                <h1 id='idref'>Promoçoes do dia :
+
+                    <button onClick={scrollToPointTopo} className={`${estiloJson.btnPesquiarMais} ${setaPesquisMais} `}><FontAwesomeIcon className={`${estiloJson.iconPesqMais} `} width={100} height={100} icon={faMagnifyingGlass} /></button>
+
+                </h1>
+
+
                 <div className={`${estiloJson.boxBtnPrevNext} ${animabtn} `} >
 
                     <FontAwesomeIcon onClick={() => actionButton('next')} className={estiloJson.iconPrevNext} icon={faChevronRight} />
@@ -803,7 +794,9 @@ export default function Ajson() {
 
             </section>
 
-            <section className={estiloJson.boxPaiCupons}>
+            <section id='idcupom' className={estiloJson.boxPaiCupons}>
+
+                <h1>Cupons :</h1>
 
                 <div className={estiloJson.boxCupons}>
 
@@ -840,7 +833,7 @@ export default function Ajson() {
             </section>
 
 
-            <section className={estiloJson.boxPorDentro}>
+            <section id='iddentro' className={estiloJson.boxPorDentro}>
 
                 <h1>Fique por dentro</h1>
 
@@ -895,12 +888,12 @@ export default function Ajson() {
             </section>
 
 
-            <section className={estiloJson.boxContatos}>
+            <section id='idcontato' className={estiloJson.boxContatos}>
 
                 <section className={estiloJson.boxContatosTexto}>
 
                     <section className={estiloJson.faleConosco}>
-                        
+
                         <h3>Fale Conosco</h3>
                         <ul>
                             <li>Atendimento</li>
@@ -942,11 +935,11 @@ export default function Ajson() {
                         <div className={estiloJson.iconsBandeiras}>
                             {
 
-                                redes.map((redes , index)=> {
+                                redes.map((redes, index) => {
 
-                                    return(
+                                    return (
 
-                                        <Image key={index} width={50} height={50} className={estiloJson.iconBandeiras} src={redes.src}/>
+                                        <Image key={index} width={50} height={50} className={estiloJson.iconBandeiras} src={redes.src} />
                                     )
                                 }).splice(4)
                             }
@@ -962,14 +955,14 @@ export default function Ajson() {
 
                             {
 
-                                redes.map((redes , index)=>{
+                                redes.map((redes, index) => {
 
-                                    return(
+                                    return (
 
-                                        <Image key={index} className={estiloJson.iconRedes} width={50} height={50} src={redes.src}/>
+                                        <Image key={index} className={estiloJson.iconRedes} width={50} height={50} src={redes.src} />
                                     )
 
-                                }).splice(0 , 4)
+                                }).splice(0, 4)
 
                             }
 
@@ -979,51 +972,130 @@ export default function Ajson() {
 
                 </section>
 
-                            
-                    
-            </section>
-
-                <section className={estiloJson.boxPaiEscondido}>
-
-                    <section className={estiloJson.boxContatoEscondido}>
-                        <div className={`${estiloJson.faleConoscoEscondido} ${mostraMenu}`}>
-                            <div onClick={()=>menuEscondido('falaconosco')} className={estiloJson.escondidoTit}>
-                                <h3>Fale Conosco</h3>
-                                <FontAwesomeIcon className={`${estiloJson.setaEscondida} ${animaSeta}`} icon={faChevronRight}/>
-                            </div>
-                    
-                                <ul>
-                                    <li>Atendimento</li>
-                                    <li>Acompanhe seu pedido</li>
-                                    <li>Abra um chamado</li>
-                                    <li>Envie um e-mail</li>
-                                </ul>
-                        </div>
-                    
-                    </section>
-
-                    <section className={estiloJson.boxIstitucionalEscondido}>
-
-                    <div className={`${estiloJson.faleConoscoEscondido}`}>
-                            <div onClick={()=>menuEscondido('institucional')} className={estiloJson.escondidoTit}>
-                                <h3>Fale Conosco</h3>
-                                <FontAwesomeIcon className={`${estiloJson.setaEscondida} ${animaSeta}`} icon={faChevronRight}/>
-                            </div>
-                    
-                                <ul>
-                                    <li>Atendimento</li>
-                                    <li>Acompanhe seu pedido</li>
-                                    <li>Abra um chamado</li>
-                                    <li>Envie um e-mail</li>
-                                </ul>
-                        </div>
-
-                    </section>
 
 
             </section>
 
-          
+            <section className={estiloJson.boxPaiEscondido}>
+
+                <section className={estiloJson.boxListasEscondidas}>
+
+
+
+                    <div className={estiloJson.boxTx}>
+                        <h3>Fale Conosco</h3>
+                        <FontAwesomeIcon className={`${estiloJson.setaEscondida}`} icon={faChevronRight} />
+                    </div>
+
+                    <ul>
+                        <li>Atendimento</li>
+                        <li>Acompanhe seu pedido</li>
+                        <li>Abra um chamado</li>
+                        <li>Envie um e-mail</li>
+                    </ul>
+
+                </section>
+
+                <section className={estiloJson.boxListasEscondidas}>
+
+
+
+                    <div className={estiloJson.boxTx}>
+                        <h3>Institucional</h3>
+                        <FontAwesomeIcon className={`${estiloJson.setaEscondida} `} icon={faChevronRight} />
+                    </div>
+
+                    <ul>
+                        <li>Trabalhe conosco</li>
+                        <li>Eventos</li>
+                        <li>Serviços</li>
+                        <li>Conteudos e dicas</li>
+                        <li>Lojas físicas</li>
+                    </ul>
+
+                </section>
+
+
+                <section className={estiloJson.boxListasEscondidas}>
+
+
+
+                    <div className={estiloJson.boxTx}>
+                        <h3>Suporte</h3>
+                        <FontAwesomeIcon className={`${estiloJson.setaEscondida} `} icon={faChevronRight} />
+                    </div>
+
+                    <ul>
+                        <li>Policitas de privacidade</li>
+                        <li>Politicas de entrega</li>
+                        <li>Politica de troca e devolução</li>
+                        <li>Politica de pagamento</li>
+                        <li>Politica de troca e devolução</li>
+                    </ul>
+
+                </section>
+
+                <section className={estiloJson.boxListasEscondidas}>
+
+
+
+                    <div className={estiloJson.boxTx}>
+                        <h3>Pagamento</h3>
+                        <FontAwesomeIcon className={`${estiloJson.setaEscondida} `} icon={faChevronRight} />
+                    </div>
+
+                    <div className={estiloJson.boxImagens}>
+
+                        {
+                            redes.map((redes, index) => {
+
+                                return (
+
+                                    <Image className={estiloJson.iconEsconde} key={index} width={50} height={50} src={redes.src} />
+                                )
+
+                            }).splice(4)
+                        }
+
+                    </div>
+
+                </section>
+
+
+                <section className={estiloJson.boxListasEscondidas}>
+
+
+
+                    <div className={estiloJson.boxTx}>
+                        <h3>Redes Sociais</h3>
+                        <FontAwesomeIcon className={`${estiloJson.setaEscondida} `} icon={faChevronRight} />
+                    </div>
+
+                    <div className={estiloJson.boxImagens}>
+
+                        {
+                            redes.map((redes, index) => {
+
+                                return (
+
+                                    <Image className={estiloJson.iconEsconde} key={index} width={50} height={50} src={redes.src} />
+                                )
+
+                            }).splice(0, 4)
+                        }
+
+                    </div>
+
+                </section>
+
+
+
+
+
+
+            </section>
+
+
 
         </section>
 

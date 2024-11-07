@@ -4,6 +4,17 @@
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
+  scroll-behavior: smooth;
+}
+
+a{
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    position: relative;
+    padding: 20px 10px;
+    text-decoration: none;
 }
 
 
@@ -28,6 +39,8 @@
     border-radius: 10px;
     background-color: #FF3E41;
 }
+
+
 
 
 

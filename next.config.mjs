@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
 
+
   images:{
 
     domains:[
@@ -39,14 +40,12 @@ const nextConfig = {
       'img.freepik.com'
 
       
-
-
-
-      
-
-
     ],
-  
+
+    
+
+
+
 
     
     
