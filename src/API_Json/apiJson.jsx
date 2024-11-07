@@ -21,6 +21,7 @@ import elo from '../public/elo.png'
 import visa from '../public/visa.png'
 import pix from '../public/pix.png'
 import master from '../public/master.png'
+import qr from '../public/qr.png'
 
 
 
@@ -40,7 +41,7 @@ export default function Ajson() {
         faSignHanging: faSignHanging
     }
 
-    const redes = [insta, lk, you , tik , elo , visa , pix, master]
+    const redes = [insta,  lk, you , tik , elo , visa , pix, master , qr]
 
     
 
@@ -55,7 +56,12 @@ export default function Ajson() {
     const [animabtn, setAnimaBtn] = useState(estiloJson.botaoLiga)
     const [blog, setBlog] = useState([])
     const [cupom, setCupom] = useState([])
+
+    const [mostraMenu , setMostraMenu] = useState(estiloJson.escondeTexto)
     
+    const [animaSeta , setAnimaSeta] = useState(estiloJson.animaSetaDesliga)
+
+    const [cond , setCond] = useState(true)
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
@@ -230,7 +236,44 @@ export default function Ajson() {
     }
 
 
+    function menuEscondido(valor){
 
+
+       if(valor === 'falaconosco'){
+
+        if(cond === true){
+
+            setMostraMenu(estiloJson.mostraTexto )
+            setCond(false)
+            setAnimaSeta(estiloJson.animaSetaLiga)
+
+        }else{
+
+            setMostraMenu(estiloJson.escondeTexto)
+            setAnimaSeta(estiloJson.animaSetaDesliga)
+            setCond(true)
+        }
+
+       }else if(valor === 'institucional'){
+
+        if(cond === true){
+
+            setMostraMenu(estiloJson.mostraTexto )
+            setCond(false)
+            setAnimaSeta(estiloJson.animaSetaLiga)
+
+        }else{
+
+            setMostraMenu(estiloJson.escondeTexto)
+            setAnimaSeta(estiloJson.animaSetaDesliga)
+            setCond(true)
+        }
+       }
+
+        
+
+    }
+            
 
 
     useEffect(() => {
@@ -873,6 +916,7 @@ export default function Ajson() {
                             <li>Trabalhe conosco</li>
                             <li>Eventos</li>
                             <li>Serviços</li>
+                            <li>Conteudos e dicas</li>
                             <li>Lojas físicas</li>
                         </ul>
                     </section>
@@ -904,7 +948,7 @@ export default function Ajson() {
 
                                         <Image key={index} width={50} height={50} className={estiloJson.iconBandeiras} src={redes.src}/>
                                     )
-                                }).splice(4,7)
+                                }).splice(4)
                             }
                         </div>
 
@@ -935,8 +979,51 @@ export default function Ajson() {
 
                 </section>
 
+                            
+                    
+            </section>
+
+                <section className={estiloJson.boxPaiEscondido}>
+
+                    <section className={estiloJson.boxContatoEscondido}>
+                        <div className={`${estiloJson.faleConoscoEscondido} ${mostraMenu}`}>
+                            <div onClick={()=>menuEscondido('falaconosco')} className={estiloJson.escondidoTit}>
+                                <h3>Fale Conosco</h3>
+                                <FontAwesomeIcon className={`${estiloJson.setaEscondida} ${animaSeta}`} icon={faChevronRight}/>
+                            </div>
+                    
+                                <ul>
+                                    <li>Atendimento</li>
+                                    <li>Acompanhe seu pedido</li>
+                                    <li>Abra um chamado</li>
+                                    <li>Envie um e-mail</li>
+                                </ul>
+                        </div>
+                    
+                    </section>
+
+                    <section className={estiloJson.boxIstitucionalEscondido}>
+
+                    <div className={`${estiloJson.faleConoscoEscondido}`}>
+                            <div onClick={()=>menuEscondido('institucional')} className={estiloJson.escondidoTit}>
+                                <h3>Fale Conosco</h3>
+                                <FontAwesomeIcon className={`${estiloJson.setaEscondida} ${animaSeta}`} icon={faChevronRight}/>
+                            </div>
+                    
+                                <ul>
+                                    <li>Atendimento</li>
+                                    <li>Acompanhe seu pedido</li>
+                                    <li>Abra um chamado</li>
+                                    <li>Envie um e-mail</li>
+                                </ul>
+                        </div>
+
+                    </section>
+
 
             </section>
+
+          
 
         </section>
 

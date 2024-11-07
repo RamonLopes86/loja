@@ -1669,12 +1669,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-        
+    justify-content: space-evenly;
+    
     flex-wrap: wrap;
-    gap: 80px 20px;
+    gap: 10px 20px;
     width: 100%;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding:0px 10px 40px 10px;
+    
 }
 
 .boxJson .boxContatos .boxContatosTexto{
@@ -1685,6 +1687,8 @@
     font-size: 1.2rem;
     color: gray;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0px 10px;
+
 
     & h3{
 
@@ -1719,7 +1723,7 @@
 
     display: grid;
     grid-template-columns: repeat(1 , 1fr);
-    
+    gap: 40px;
 
 
     & h3{
@@ -1736,7 +1740,17 @@
 
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    margin-top: 120px;
     
+
+    & .iconsBandeiras{
+
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        padding-top: 20px;
+    }
     
 
    & h3{
@@ -1754,7 +1768,8 @@
 
     display: flex;
     flex-direction: column;
-    
+    gap: 10px;
+    margin-top: 40px;
 
     & h3{
 
@@ -1769,7 +1784,8 @@
 
         display: flex;
         flex-direction:row;
-        gap: 25px;
+        gap: 30px;
+        padding-top: 10px;
 
         & .iconRedes{
 
@@ -1781,6 +1797,115 @@
 }
 
   
+.boxPaiEscondido{
+
+    min-height: 300px;
+}
+
+.boxContatoEscondido{
+
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden;
+    transition: all 500ms;
+    padding-top: 30px;
+
+    & ul{
+
+        
+        padding: 15px 0px;
+    }
+
+    & ul > li:hover{
+
+        color: #ff3e41;
+        cursor: pointer;
+    }
+    
+}
+
+.boxContatoEscondido .faleConoscoEscondido ul {
+
+    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.boxContatoEscondido .faleConoscoEscondido .escondidoTit{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: 300ms;
+
+    & h3{
+
+        font-size: 1rem;
+       color: gray;
+    }
+
+    & .setaEscondida{
+
+        width: 12px;
+        height: 12px;
+    }
+
+   
+        
+}
+
+.boxContatoEscondido .faleConoscoEscondido .escondidoTit:hover{
+
+    background-color: #df686a;
+    transition: 300ms;
+
+    & h3{
+
+        color: white;
+    }
+
+    & .setaEscondida{
+
+        color: white;
+    }
+}    
+       
+
+
+.animaSetaLiga{
+
+transform: rotate(90deg);
+transition: 500ms;
+
+}
+
+.animaSetaDesliga{
+
+    transform: rotate(0deg);
+    transition: 500ms;
+}
+
+
+ .escondeTexto{
+
+    height: 50px;
+    transition: all 400ms;
+   
+
+}
+
+.mostraTexto{
+
+    height:200px;
+    transition: all 400ms;
+   
+
+}
+
 
 
 @media screen and (max-width: 650px) {
@@ -1924,7 +2049,14 @@
 
 }
 
+@media screen and (max-width:705px) {
 
+    .boxJson .boxContatos{
+
+        display: none;
+    }
+
+}
 
 
 
