@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp , faX } from '@fortawesome/free-solid-svg-icons'
 import seta from '/public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -60,7 +60,7 @@ export default function Ajson() {
 
     const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
-
+    const [cond , setCond] = useState(false)
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
@@ -86,7 +86,9 @@ export default function Ajson() {
             setCupom(response.data.cupons)
 
 
-
+           
+         
+    
 
 
         } catch (error) {
@@ -260,7 +262,19 @@ export default function Ajson() {
 
     
     
-   
+   function openMenuEscondido(nome){
+
+
+        if(nome === 'fecha'){
+
+             setCond(false)
+
+        }else if(nome === 'abre'){
+
+           setCond(true) 
+        }
+
+   }
 
 
     useEffect(() => {
@@ -329,8 +343,23 @@ export default function Ajson() {
     }, [input])
 
 
+    useEffect(()=>{
+
+        const recolheMenuEscondido = () =>{
+
+            if(window.innerWidth >=870){
+
+                setCond(false)
+            }
+
+        }
+
+        window.addEventListener('resize' , recolheMenuEscondido)
 
 
+        return()=> window.removeEventListener('resize' ,recolheMenuEscondido)
+    })
+    
     return (
 
         <section className={estiloJson.boxJson}>
@@ -347,12 +376,12 @@ export default function Ajson() {
                         <div className={estiloJson.boxLogo}>
 
 
-                            <FontAwesomeIcon className={estiloJson.iconLogoHam} icon={faBars} />
+                            <FontAwesomeIcon onClick={()=>openMenuEscondido('abre')} className={estiloJson.iconLogoHam} icon={faBars} />
 
 
                             <div className={estiloJson.boxLogoTx}>
                                 <h1>Ramon</h1>
-                                <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
+                                <FontAwesomeIcon  className={estiloJson.house} icon={faHouse} />
                             </div>
                         </div>
 
@@ -1122,13 +1151,44 @@ export default function Ajson() {
 
                 </section>
 
+            </section>
 
+            
+            <section className={`${estiloJson.boxMenuEscondido} ${cond ? estiloJson.menuEscondidoAbre : estiloJson.menuEscondidoFecha}`}>
 
+                <div className={estiloJson.menuTxEscondido}>
+                    <h3>Explorar</h3>
+                    <FontAwesomeIcon onClick={()=>openMenuEscondido('fecha') }  className={estiloJson.iconXis} icon={faX}/>
+                </div>
 
-
+                <div className={estiloJson.listaDepEscondidas}>
+                    {
+                        depart.map((depart , index)=>{
+                            return(
+                    
+                                    <span key={index}>{depart.name} <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> </span>
+                    
+                            )
+                        })
+                    }
+                </div>
+                    
 
             </section>
 
+
+
+
+
+        <section className={estiloJson.footer}>
+                        
+                
+                <p>Desenvolvido por Ramon da silva Lopes : &copy; {new Date().getFullYear()}  </p>
+               
+                        
+        </section>
+
+                    
 
 
         </section>
