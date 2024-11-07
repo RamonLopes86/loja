@@ -14,7 +14,7 @@ export default function Home() {
         <title>Ramon Materiais</title>
         <meta name="description" content="Materiais de Construção" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/formico.ico" type="image/ico" />
+        <link rel="icon" href="/favico.ico" type="image/ico" />
         
       </Head>
       <main>
