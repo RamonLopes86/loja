@@ -32,6 +32,7 @@ import digitar from '/public/digitar.png'
 
 
 
+
 export default function Ajson() {
 
     const icons = {
@@ -743,6 +744,8 @@ export default function Ajson() {
                     spaceBetween={0}
                     simulateTouch={true}
                     grabCursor={true}
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
 
                     breakpoints={
 
@@ -875,6 +878,8 @@ export default function Ajson() {
                         autoplay={{ delay: 0 }}
                         speed={1500}
                         loop={true}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
 
                         breakpoints={
 
