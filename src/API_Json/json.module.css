@@ -659,6 +659,7 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    
 
 
 }
@@ -2383,6 +2384,15 @@ transition: 500ms;
         }
     }
 
+
+    .boxJson .slider .navigation label {
+
+        width: 10px;
+        height: 10px;
+    
+    
+    }
+
 }
 
 @media screen and (max-width:480px) {
@@ -2535,17 +2545,6 @@ transition: 500ms;
 }
 
 
-@media screen and (max-width:500px) {
-
-        
-.boxJson .slider .navigation label {
-
-    width: 10px;
-    height: 10px;
-
-
-}
-}
 
 
 @media screen and (max-width:600px) {

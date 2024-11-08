@@ -462,18 +462,22 @@ export default function Ajson() {
                                 <h1>Ramon</h1>
                                 <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
                             </div>
+
                         </div>
 
                         <form onSubmit={pesquisar}>
                             <input onChange={(ev) => setInput(ev.target.value)} value={input} autoComplete='off' placeholder='Pesquise pelo produto' type="text" name="pesquisa" id="idpesquisa" />
                             <button type='submit'><FontAwesomeIcon className={estiloJson.iconPesq} icon={faMagnifyingGlass} /> </button>
                         </form>
+
                         <div className={estiloJson.boxLocaliza}>
                             <FontAwesomeIcon className={estiloJson.iconLocaliza} icon={faLocationDot} />
                             <FontAwesomeIcon className={estiloJson.iconLocaliza} icon={faCartShopping} />
                             <FontAwesomeIcon className={estiloJson.iconLocaliza} icon={faUser} />
                         </div>
+
                     </section>
+                    
                     <section className={estiloJson.boxNav}>
 
                         <nav className={estiloJson.navMenu}>
