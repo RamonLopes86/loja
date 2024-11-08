@@ -2538,9 +2538,14 @@ transition: 500ms;
         justify-content: space-between;
         gap: 40px;
         
-        
-        
     }
+
+    
+    .boxJson .Top .boxLocaliza{
+
+        padding-left: 10px;
+     }   
+        
 
 }
 
