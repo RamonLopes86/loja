@@ -759,7 +759,7 @@ export default function Ajson() {
                     breakpoints={
 
                         {
-                            100: { slidesPerView: 1 },
+                            100: { slidesPerView: 2 },
                             500: { slidesPerView: 3 },
                             600: { slidesPerView: 4 },
 
@@ -896,8 +896,8 @@ export default function Ajson() {
                                 1024: { slidesPerView: 6 },
                                 960: { slidesPerView: 4 },
                                 600: { slidesPerView: 2 },
-                                500: { slidesPerView: 2 },
-                                300: { slidesPerView: 1 }
+                                500: { slidesPerView: 3 },
+                                300: { slidesPerView: 2 }
 
 
 
