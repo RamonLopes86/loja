@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp , faX , faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagnifyingGlass, faBolt, faScrewdriverWrench, faSquarePersonConfined, faBoltLightning, faDroplet, faShower, faShieldHalved, faBrush, faToolbox, faSignHanging, faChevronRight, faEnvelope, faPaperPlane, faAnglesUp, faX, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import seta from '/public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -61,8 +61,8 @@ export default function Ajson() {
 
     const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
-    const [cond , setCond] = useState(false)
-    const [condSub , setCondSub] = useState(false)
+    const [cond, setCond] = useState(false)
+    const [condSub, setCondSub] = useState(false)
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
@@ -75,7 +75,9 @@ export default function Ajson() {
 
     async function consumirJson() {
 
-        const response = await axios.get('http://localhost:8080/exibir')
+        // const response = await axios.get('http://localhost:8080/exibir')
+
+        const response = await axios.get('https://apiconstrua.onrender.com/exibir')
 
 
 
@@ -88,9 +90,9 @@ export default function Ajson() {
             setCupom(response.data.cupons)
 
 
-           
-         
-    
+
+
+
 
 
         } catch (error) {
@@ -103,7 +105,7 @@ export default function Ajson() {
 
     async function consumirProdutos() {
 
-        const responseProdutos = await axios.get('http://localhost:8080/exibir')
+        const responseProdutos = await axios.get('https://apiconstrua.onrender.com/exibir')
 
         setProdutos(responseProdutos.data.products)
 
@@ -114,7 +116,7 @@ export default function Ajson() {
         setDepPesq(estiloJson.boxPromocoesSemFlex)
 
 
-       
+
 
     }
 
@@ -129,7 +131,7 @@ export default function Ajson() {
 
         try {
 
-            const responsePesquisa = await axios.get(`http://localhost:8080/consulta?nome=${input}`)
+            const responsePesquisa = await axios.get(`https://apiconstrua.onrender.com/consulta?nome=${input}`)
 
 
 
@@ -261,23 +263,27 @@ export default function Ajson() {
 
         elementoTopo.scrollIntoView({ behavior: 'smooth' })
     }
-    
-
-    
-    
-   function openMenuEscondido(nome){
 
 
-        if(nome === 'fecha'){
+    function recolherMenu(){
 
-             setCond(false)
+        setCond(false)
 
-        }else if(nome === 'abre'){
+    }
 
-           setCond(true) 
+    function openMenuEscondido(nome) {
+
+
+        if (nome === 'fecha') {
+
+            setCond(false)
+
+        } else if (nome === 'abre') {
+
+            setCond(true)
         }
 
-   }
+    }
 
 
     useEffect(() => {
@@ -287,33 +293,33 @@ export default function Ajson() {
 
         let count = 1
 
-       
 
-        function NextImage(){
 
-            count ++
+        function NextImage() {
 
-            if(count >=4){
-    
+            count++
+
+            if (count >= 4) {
+
                 count = 1
 
             }
-                
-    
-                
+
+
+
             document.getElementById('radio' + count).checked = true
-            
-    
+
+
         }
-      
-    const intervalo =   setInterval(()=>{
+
+        const intervalo = setInterval(() => {
 
             NextImage()
 
-       },5000)
-       
+        }, 5000)
 
-       return () => clearInterval(intervalo)
+
+        return () => clearInterval(intervalo)
 
     }, [])
 
@@ -346,11 +352,11 @@ export default function Ajson() {
     }, [input])
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        const recolheMenuEscondido = () =>{
+        const recolheMenuEscondido = () => {
 
-            if(window.innerWidth >=870){
+            if (window.innerWidth >= 870) {
 
                 setCond(false)
                 setCondSub(false)
@@ -358,14 +364,14 @@ export default function Ajson() {
 
         }
 
-        window.addEventListener('resize' , recolheMenuEscondido)
+        window.addEventListener('resize', recolheMenuEscondido)
 
 
-        return()=> window.removeEventListener('resize' ,recolheMenuEscondido)
-    },[])
+        return () => window.removeEventListener('resize', recolheMenuEscondido)
+    }, [])
 
 
-    
+
     return (
 
         <section className={estiloJson.boxJson}>
@@ -382,12 +388,12 @@ export default function Ajson() {
                         <div className={estiloJson.boxLogo}>
 
 
-                            <FontAwesomeIcon onClick={()=>openMenuEscondido('abre')} className={estiloJson.iconLogoHam} icon={faBars} />
+                            <FontAwesomeIcon onClick={() => openMenuEscondido('abre')} className={estiloJson.iconLogoHam} icon={faBars} />
 
 
                             <div className={estiloJson.boxLogoTx}>
                                 <h1>Ramon</h1>
-                                <FontAwesomeIcon  className={estiloJson.house} icon={faHouse} />
+                                <FontAwesomeIcon className={estiloJson.house} icon={faHouse} />
                             </div>
                         </div>
 
@@ -617,7 +623,7 @@ export default function Ajson() {
 
 
 
-                <div id='teste'  className={estiloJson.slides}>
+                <div id='teste' className={estiloJson.slides}>
 
 
                     <input type="radio" name="radio" id="radio1" />
@@ -627,7 +633,7 @@ export default function Ajson() {
 
 
 
-                    <div id='sld1'  className={estiloJson.slide}>
+                    <div id='sld1' className={estiloJson.slide}>
                         <Image className={estiloJson.imgSlide} alt='imagens' src={furadeira} />
                     </div>
 
@@ -808,13 +814,16 @@ export default function Ajson() {
                         autoplay={{ delay: 0 }}
                         speed={1500}
                         loop={true}
+
                         breakpoints={
 
                             {
                                 1024: { slidesPerView: 6 },
                                 960: { slidesPerView: 4 },
-                                600: { slidesPerView: 3 },
-                                500: { slidesPerView: 2 }
+                                600: { slidesPerView: 2 },
+                                500: { slidesPerView: 2 },
+                                300: { slidesPerView: 1 }
+
 
 
                             }
@@ -1045,7 +1054,7 @@ export default function Ajson() {
 
             </section>
 
-            <section className={estiloJson.boxPaiEscondido}>
+            <section id='idcontato2' className={estiloJson.boxPaiEscondido}>
 
                 <section className={estiloJson.boxListasEscondidas}>
 
@@ -1159,42 +1168,66 @@ export default function Ajson() {
 
             </section>
 
-            
+
             <section className={`${estiloJson.boxMenuEscondido} ${cond ? estiloJson.menuEscondidoAbre : estiloJson.menuEscondidoFecha}`}>
 
                 <div className={estiloJson.menuTxEscondido}>
                     <h3>Explorar</h3>
-                    <FontAwesomeIcon onClick={()=>openMenuEscondido('fecha') }  className={estiloJson.iconXis} icon={faX}/>
+                    <FontAwesomeIcon onClick={() => openMenuEscondido('fecha')} className={estiloJson.iconXis} icon={faX} />
                 </div>
 
                 <div className={estiloJson.listaDepEscondidas}>
-                        <ul>
-                            <li onClick={()=> setCondSub(true)}>Departamentos <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> </li>
-                            <li>Promoções do dia <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
-                            <li>Cupons <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
-                            <li>Serviços <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
-                            <li>Dicas <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
-                            <li>Suporte <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/>  </li>
-                        </ul>
+                    <ul>
+                       
+
+
+                       
+
+                        <li onClick={() => setCondSub(true)}>Departamentos <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} /> </li>
+
+                        <Link onClick={recolherMenu} className={estiloJson.linkMenu} href={'#idref'}>
+                            <li>Promoções do dia <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} />  </li>
+                        </Link>
+
+                        <Link onClick={recolherMenu} className={estiloJson.linkMenu} href={'#idcupom'}>
+                            <li>Cupons <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} />  </li>
+                        </Link>
+
+                        <Link onClick={recolherMenu} className={estiloJson.linkMenu} href={'#iddentro'}>
+
+                            <li>Serviços <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} />  </li>
+                        </Link>
+
+                        <Link onClick={recolherMenu} className={estiloJson.linkMenu} href={'#'}>
+
+                            <li>Dicas <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} /> </li>
+                        </Link>
+
+                        <Link onClick={recolherMenu} className={estiloJson.linkMenu} href={'#idcontato2'}>
+
+                            <li>Suporte <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} /></li>
+                        </Link>
+
+                    </ul>
                 </div>
 
                 <div className={`${estiloJson.subMenuEscondido} ${condSub ? estiloJson.animaSubOn : estiloJson.animaSubOff}`}>
 
-                  
-                        <h3 onClick={()=> setCondSub(false)}  className={estiloJson.boxTxSubmenuEscondido}> <FontAwesomeIcon className={estiloJson.setaCabo} icon={faArrowRight}/>Voltar</h3> 
-                           
-                  
 
-                        <ul className={estiloJson.listaSubmenuEscondido}>
-                            {
-                            depart.map((depart , index)=>{
+                    <h3 onClick={() => setCondSub(false)} className={estiloJson.boxTxSubmenuEscondido}> <FontAwesomeIcon className={estiloJson.setaCabo} icon={faArrowRight} />Voltar</h3>
 
-                                return(
 
-                                    <li key={index}>{depart.name} <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight}/> 
 
-                                            {/* caso queira mostrar as categorias é so descomentar e estilizar */}
-                                            {/* <li>
+                    <ul className={estiloJson.listaSubmenuEscondido}>
+                        {
+                            depart.map((depart, index) => {
+
+                                return (
+
+                                    <li key={index}>{depart.name} <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} />
+
+                                        {/* caso queira mostrar as categorias é so descomentar e estilizar */}
+                                        {/* <li>
 
                                                 {
                                                     depart.categories.map((dep)=>{
@@ -1209,20 +1242,20 @@ export default function Ajson() {
 
                                             </li> */}
 
-                                     </li>
-                                            
-                                    
-                                    
+                                    </li>
 
-                                    
+
+
+
+
                                 )
                             })
 
-                            }
-                        </ul>
+                        }
+                    </ul>
 
                 </div>
-                    
+
 
             </section>
 
@@ -1230,15 +1263,15 @@ export default function Ajson() {
 
 
 
-        <section className={estiloJson.footer}>
-                        
-                
-                <p>Desenvolvido por Ramon da silva Lopes : &copy; {new Date().getFullYear()}  </p>
-               
-                        
-        </section>
+            <section className={estiloJson.footer}>
 
-                    
+
+                <p>Desenvolvido por Ramon da silva Lopes : &copy; {new Date().getFullYear()}  </p>
+
+
+            </section>
+
+
 
 
         </section>
