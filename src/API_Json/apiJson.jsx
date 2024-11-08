@@ -23,6 +23,9 @@ import visa from '/public/visa.png'
 import pix from '/public/pix.png'
 import master from '/public/master.png'
 import qr from '/public/qr.png'
+import xis from '/public/x.png'
+import digitar from '/public/digitar.png'
+
 
 
 
@@ -46,9 +49,6 @@ export default function Ajson() {
     const redes = [insta, lk, you, tik, elo, visa, pix, master, qr]
 
 
-
-
-
     const [dados, setDados] = useState([])
     const [produtos, setProdutos] = useState([])
     const [input, setInput] = useState('')
@@ -58,6 +58,9 @@ export default function Ajson() {
     const [animabtn, setAnimaBtn] = useState(estiloJson.botaoLiga)
     const [blog, setBlog] = useState([])
     const [cupom, setCupom] = useState([])
+    const [alertTx, setAlertTexto] = useState('tx qualquer')
+    const [alertImage, setAlertImage] = useState()
+    const [alertAnima, setAlertAnima] = useState(estiloJson.animaAlertOff)
 
     const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
@@ -66,9 +69,6 @@ export default function Ajson() {
 
     const refProdutos = useRef()
     const refBoxProdutos = useRef()
-
-
-
 
 
 
@@ -122,9 +122,6 @@ export default function Ajson() {
 
 
 
-
-
-
     async function pesquisar(ev) {
 
         ev.preventDefault()
@@ -134,17 +131,34 @@ export default function Ajson() {
             const responsePesquisa = await axios.get(`https://apiconstrua.onrender.com/consulta?nome=${input}`)
 
 
-
-
             if (input.length === 0) {
 
-                alert('digite algo')
+                setAlertAnima(estiloJson.animaAlertOn)
+                
+              const time1 =  setTimeout(()=>{
+
+
+                    setAlertAnima(estiloJson.animaAlertOff)
+
+                    clearTimeout(time1)
+    
+                },1200)
+
+                
+
+                setAlertImage(digitar)
+                setAlertTexto('Digite algo')
                 setAnimaBtn(estiloJson.botaoLiga)
                 setDepPesq(boxPromocoesSemFlex)
+
+
             }
+                
+                
 
+            
 
-
+                
 
             if (responsePesquisa.data.length > 0) {
 
@@ -153,18 +167,39 @@ export default function Ajson() {
 
                 setDepPesq(estiloJson.boxPromocoesFlex)
                 setAnimaBtn(estiloJson.botaoDesliga)
-
                 scrollToPoint()
-
                 setSetaPesquisaMais(estiloJson.pesqMaisLiga)
+
+
 
             } else {
 
                 setAnimaBtn(estiloJson.botaoLiga)
                 setDepPesq(estiloJson.boxPromocoesSemFlex)
                 window.history.pushState({}, '', `?nome=${input}`)
-                alert('produto nao encontrado')
+                setAlertImage(xis)
+                setAlertTexto('Produto nao Encontrado')
+                setAlertAnima(estiloJson.animaAlertOn)
+               
+
+             const time2 =  setTimeout(()=>{
+
+                    setAlertAnima(estiloJson.animaAlertOff)
+
+                    
+                    clearTimeout(time2)
+
+                },1200)
+
+                
+
+                
+
             }
+
+
+            
+            
 
         } catch (error) {
 
@@ -265,7 +300,7 @@ export default function Ajson() {
     }
 
 
-    function recolherMenu(){
+    function recolherMenu() {
 
         setCond(false)
 
@@ -335,9 +370,11 @@ export default function Ajson() {
                 consumirProdutos()
                 setAnimaBtn(estiloJson.botaoLiga)
                 setSetaPesquisaMais(estiloJson.pesqMaisDesliga)
-
-
                 window.history.pushState({}, '', window.location.pathname);
+
+                
+
+
             } else {
 
 
@@ -366,8 +403,13 @@ export default function Ajson() {
 
         window.addEventListener('resize', recolheMenuEscondido)
 
+        return () => {
 
-        return () => window.removeEventListener('resize', recolheMenuEscondido)
+            window.removeEventListener('resize', recolheMenuEscondido)
+            
+
+        }
+
     }, [])
 
 
@@ -380,6 +422,23 @@ export default function Ajson() {
 
 
             <section id='refTop' className={estiloJson.boxPaiTop}>
+
+
+                {/* Alert inicio */}
+                <section className={`${estiloJson.alert} ${alertAnima}`}>
+
+                    <div className={estiloJson.molduraAlert}>
+
+                       
+                            <p>{alertTx}</p>
+                            <Image style={{width:'50px', height:'50px'}} src={alertImage} />
+                       
+
+                    </div>
+
+                </section>
+
+                {/* Alert Final */}
 
                 <div className={estiloJson.Top}>
 
@@ -1178,10 +1237,10 @@ export default function Ajson() {
 
                 <div className={estiloJson.listaDepEscondidas}>
                     <ul>
-                       
 
 
-                       
+
+
 
                         <li onClick={() => setCondSub(true)}>Departamentos <FontAwesomeIcon className={estiloJson.iconSeta} icon={faChevronRight} /> </li>
 
@@ -1258,6 +1317,9 @@ export default function Ajson() {
 
 
             </section>
+
+
+
 
 
 
