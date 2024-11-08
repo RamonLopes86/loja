@@ -7,9 +7,14 @@ import { faHouse, faLocationDot, faStar, faUser, faCartShopping, faBars, faMagni
 import seta from '/public/seta.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import 'Swiper/css'
-import 'Swiper/css/navigation'
-import 'Swiper/css/pagination'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+
+
+
+
 import Image from 'next/image';
 import alicate from '/public/alicate.jpg'
 import furadeira from '/public/furadeira.jpg'
