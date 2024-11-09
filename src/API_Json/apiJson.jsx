@@ -69,6 +69,7 @@ export default function Ajson() {
     const [alertTx, setAlertTexto] = useState('tx qualquer')
     const [alertImage, setAlertImage] = useState()
     const [alertAnima, setAlertAnima] = useState(estiloJson.animaAlertOff)
+    const [loading , setLoading] = useState(true)
 
     const [setaPesquisMais, setSetaPesquisaMais] = useState(estiloJson.pesqMaisDesliga)
 
@@ -97,15 +98,11 @@ export default function Ajson() {
 
             setCupom(response.data.cupons)
 
-
-
-
-
-
+            setLoading(false)
 
         } catch (error) {
 
-            alert(error.mesage)
+            alert(error.message)
         }
 
     }
@@ -123,10 +120,11 @@ export default function Ajson() {
 
         setDepPesq(estiloJson.boxPromocoesSemFlex)
 
-
+        setLoading(false)
 
 
     }
+
 
 
 
@@ -201,7 +199,7 @@ export default function Ajson() {
 
                 
 
-                
+            setLoading(false)
 
             }
 
@@ -212,6 +210,7 @@ export default function Ajson() {
         } catch (error) {
 
             console.log(error.status)
+            setLoading(false)
 
         }
 
@@ -762,10 +761,10 @@ export default function Ajson() {
                             100: { slidesPerView: 2 },
                             500: { slidesPerView: 3 },
                             600: { slidesPerView: 4 },
-
                             900: { slidesPerView: 6 },
-
                             1024: { slidesPerView: 8 }
+
+
                         }
 
                     }
