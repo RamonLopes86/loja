@@ -1,3 +1,82 @@
+.carrega{
+
+
+    background-color:#ececec;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+
+    & p{
+
+        text-transform: uppercase;
+        padding-top: 20px;
+
+    }
+
+
+    .ball{
+
+        width: 60px;
+        height: 60px;
+       
+        border-radius: 50%;
+        border-top: 3px solid red;
+
+        animation-name: moveBall;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+       
+    }
+
+
+    & .balon{
+
+        width: 50px;
+        height: 50px;
+
+        animation-name:moveBalon;
+        animation-duration: 800ms;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+
+
+}
+
+
+
+
+@keyframes moveBalon {
+
+    to{
+        transform: translateY(-15px);
+        transition: all 500ms;
+    }
+
+}
+
+@keyframes moveBall {
+
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
 .boxJson {
 
     min-height: 800px;

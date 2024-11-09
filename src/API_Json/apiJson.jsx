@@ -30,6 +30,7 @@ import master from '/public/master.png'
 import qr from '/public/qr.png'
 import xis from '/public/x.png'
 import digitar from '/public/digitar.png'
+import balon from '../../public/balon.png'
 
 
 
@@ -103,6 +104,7 @@ export default function Ajson() {
         } catch (error) {
 
             alert(error.message)
+            setLoading(false)
         }
 
     }
@@ -144,7 +146,7 @@ export default function Ajson() {
               const time1 =  setTimeout(()=>{
 
 
-                    setAlertAnima(estiloJson.animaAlertOff)
+                setAlertAnima(estiloJson.animaAlertOff)
 
                     clearTimeout(time1)
     
@@ -199,13 +201,14 @@ export default function Ajson() {
 
                 
 
-            setLoading(false)
+           
 
             }
 
 
             
-            
+            setLoading(false)
+
 
         } catch (error) {
 
@@ -423,7 +426,26 @@ export default function Ajson() {
 
     return (
 
-        <section className={estiloJson.boxJson}>
+        loading ? (
+
+
+            <div className={estiloJson.carrega}>
+
+                <Image className={estiloJson.balon} src={balon}/>
+
+                <p>Carregando pagina , aguarde....</p>
+
+                <div className={estiloJson.ball}>
+
+                </div>
+
+             
+
+            </div>
+
+        ):(
+
+            <section className={estiloJson.boxJson}>
 
             <Link className={estiloJson.btnUp} href={'#refTop'}><FontAwesomeIcon className={estiloJson.btnUp} width={100} height={100} icon={faAnglesUp} /></Link>
 
@@ -1354,6 +1376,8 @@ export default function Ajson() {
         </section>
 
 
+
+        )
 
     )
 }
